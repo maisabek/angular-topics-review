@@ -1,0 +1,27 @@
+<p>template-driven-form works!</p>
+<!--
+    ngForm ==>
+    دا ديكراتف عشان اقدر الف جوا الفورم
+    وبنستفاد منة كأنة فورم جروب
+    schoolForm =>
+    instance كدة اخدنا
+     من الديركتف دة
+_____________________________
+انجلر هى اللى بتعمل الكنترول لينا
+عن طريق
+name=""
+ngModel
+_______________________________
+ngModelGroup ==>
+nested form group لو عايزة اعمل
+____________________________
+الفاليدشن بتكتب هنا فى الاتش تى ام ال
+-->
+
+<form #buildForm="ngForm"  (ngSubmit)="onSubmit(buildForm.value)">
+fname:<input type="text" name="fname" ngModel required><br>
+lname:<input type="text" name="lname-" ngModel #count="ngModel"><br>
+{{count.value}}
+{{buildForm.value | json}}
+<button type="submit">submit</button>
+</form>

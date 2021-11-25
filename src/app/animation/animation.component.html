@@ -1,0 +1,63 @@
+<p>animation works!</p>
+<!-- 
+<button (click)='isLogin = true' mat-raised-button color="primary">login</button>
+<button (click)='isLogin = false' mat-raised-button color="primary">logout</button> -->
+
+<!-- [ngStyle]="isLogin ? {opacity:1} : {opacity:0}" -->
+
+<!-- <div [@fade]="isLogin ? 'login':'logout'">hello</div> -->
+<hr>
+
+<!-- <button (click)='isLogin = true' mat-raised-button color="primary">login</button>
+<button (click)='isLogin = false' mat-raised-button color="primary">logout</button> -->
+<button (click)='openPopup = true' mat-raised-button color="primary">Open PopUp</button>
+
+<!-- <div class="btn" [@fade]="isLogin ? 'login':'logout'">hello</div> -->
+<!-- <div class="btn" *ngIf="isLogin" @toggleByVoid>hello</div> -->
+<!-- <div class="btn" *ngIf="isLogin" @toggleBy>hello</div> -->
+<!-- <div class="btn" *ngIf="isLogin" @multiple>hello</div> -->
+<!-- 
+لو عايزة اعمل
+disable
+لحالات معينة فى الانيمشن
+دا هيعمل 
+disable
+فى الانتر بس 
+-->
+<!-- <div [@.disabled]="isLogin">
+    <div class="btn" *ngIf="isLogin" @fade>
+        hello
+    </div>
+    
+    </div> -->
+<!-- 
+لو عايزة اعمل
+disable
+لحالات معينة فى الانيمشن
+دا هيعمل 
+disable
+فى الخروج بس 
+-->
+    <!-- <div [@.disabled]="!isLogin">
+        <div class="btn" *ngIf="isLogin" @fade>
+            hello
+        </div>
+        
+        </div> -->
+    <div class="popup" (click)='openPopup = false' *ngIf="openPopup" @popupParent>
+        <div class="my-form" @popupChild>hello world</div>
+    </div>
+<hr>
+<button (click)='isLogin = true' mat-raised-button color="primary">login</button>
+<button (click)='isLogin = false' mat-raised-button color="primary">logout</button> 
+<div [@.disabled]="!isLogin">
+    <div class="btn" *ngIf="isLogin" @ByKeyframe>
+        hello
+    </div>
+    
+    </div>
+<hr>
+
+
+
+

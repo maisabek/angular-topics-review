@@ -1,0 +1,145 @@
+<p>directives</p>
+<!--  
+   هو اللى شايل الديكراتف يعنى ال  p  هنا ال  
+   p هو الهوست بتاعة 
+    لو عايز يعمل ليسنت على الاكشن بتاع الهوست عن طريق ال 
+    @HostListener('mouseover') mouse
+    اكتبها فى الديركتف
+-->
+<!-- 
+    [highLightColor]="'yellow'" 
+    لو عايزة الكمبونت هى اللى تبعت اللون لديركتف
+-->
+<p appDirective [highLightColor]="'yellow'">Hello Directive</p>
+<!-- 
+    لو عندى السليكتور نفس الانبت 
+    ليهم نفس الاسم يعنى ممكن اكتبة كدة
+    <p [appDirective]="'orange'">hello</p>
+  انبت و سليكتور appDirective يعنى هنا ال 
+-->
+<p [appDirective]="'orange'">hello</p>
+
+<div>
+<input type="radio" name="color" (click)="color = 'green'">green
+<input type="radio" name="color" (click)="color = 'blue'">blue
+<input type="radio" name="color" (click)="color = 'yellow'">yellew
+</div>
+<p appDirective [highLightColor]="color" defaultColor="violet">appDirective</p>
+
+<hr>
+<input type="text">
+<br><br>
+<input type="text" appRandomColors>
+<hr>
+<!-- Structural Directives -->
+<h5>Structural Directives</h5>
+<!--
+    template in your app is a section of HTML that you can 
+    include as a part of the page that the browser displays.
+-->
+<!-- 
+    * ==> syntax suger 
+    يعنى اختصار لحاجة كبيرة معقدة
+    يعنى الانجلر بتحول دة
+
+    <div *ngIf="name">{{color}}</div>
+     لدة
+    <ng-template [ngIf]="name">
+        <div>{{ color }}</div>
+    </ng-template>
+-->
+<div *ngIf="name;then thenBlock else elseBlock">{{color}}</div>
+<ng-template #thenBlock>thenBlock</ng-template>
+<ng-template #elseBlock>elseBlock</ng-template>
+<hr>
+<div *ngFor="let name of names;let i = index;let odd=odd;
+let even=even;let first=first;let last=last;let count=count;
+trackBy:trackByFn">
+    {{name}} {{ i + '' + odd + '' + even + first + '' + last}}
+</div>
+<!-- 
+    الانجلر بتحول دة 
+<div *ngFor="let name of names;let i = index;let odd=odd;let even=even;let first=first;let last=last">
+    {{name}} {{ i + '' + odd + '' + even + first + '' + last}}
+</div>
+لدة 
+<ng-template ngFor let-name [ngForOf]="names"
+let-i =index
+let-odd =odd
+let-even=even
+let-first=first
+let-last=last
+[ngForTrackBy]="trackByFn"
+>
+{{name}} {{ i + '' + odd + '' + even + first + '' + last}}
+</ng-template>
+-->
+<hr>
+<ng-template ngFor let-name [ngForOf]="names"
+let-i = index
+let-odd=odd
+let-even=even
+let-first=first
+let-last=last
+[ngForTrackBy]="trackByFn">
+<div>
+{{name}} {{ i + '' + odd + '' + even + first + '' + last}}
+</div>
+</ng-template>
+<hr>
+<!-- ng switch -->
+<div [ngSwitch]="colors">
+    <div *ngSwitchCase="'red'">red</div>
+    <div *ngSwitchCase="'blue'">blue</div>
+    <div *ngSwitchCase="'green'">green</div>
+</div>
+<hr>
+<input type="text" [(ngModel)]="name">
+<div *ngIf="name">ng if</div>
+<div *appUnless="name">ng unless</div>
+<hr>
+<!-- 
+    لو عايزة انادى على  كود موجود جو تمبليت 
+-->
+<ng-container *ngTemplateOutlet="thenBlock"></ng-container>
+<hr>
+<!-- 
+    لو عايز ابعت متغير 
+    color ===> متغير جاى من التايب اسكربت
+-->
+<ng-template #xTemplate let-myColor="color">
+<div>{{myColor}} is my color</div>
+</ng-template>
+<!-- 
+    context 
+  بيشوف الحاجة اللى ناقصة جو الاوبجكيت 
+  ctx
+-->
+
+<ng-container *ngTemplateOutlet="xTemplate;context:ctx"></ng-container>
+<hr>
+
+<ng-template #mainButtons>
+<button>i'm main button</button>
+</ng-template>
+<!-- [parentTemplate]="mainButtons" -->
+<!-- <app-child></app-child> -->
+
+<!--
+ select
+ Html Element هو 
+ Angular وفى 
+ هنا فيسمى
+ Host Element
+ Angular فأى عنصر فى الصفحة يعمل مع 
+ Host Element يسمى  
+________________
+[ngValue]
+ وتستخدم أيضاً لعرض البيانات فى الصفحة
+-->
+<select [(ngModel)]="colors">
+<option [ngValue]=""></option>
+</select>
+<br>
+<label for="example-change">(ngModelChange)="...name=$event":</label>
+<input [ngModel]="currentItem.name" (ngModelChange)="currentItem.name=$event" id="example-change">

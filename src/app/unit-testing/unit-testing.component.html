@@ -1,0 +1,76 @@
+<p>unit-testing works!</p>
+<!--
+   unit testing ==> كود بيعمل تيست لكود
+   ng test عن طريق الامر 
+   ______
+   ng test --code-coverage 
+   بيطلع 
+   coverage summary
+      testing اد اية للكود ك  cover عامل 
+      يعنى مأمن البروجكيت بتاعى اد اية بنسبة كام فى المية
+      يعنى الفنكشن اللى عندى  بنسبة اد اية معمول تيستنج
+      وممكن يحط 
+      "codeCoverage": true,
+      angular.json جو ال 
+      هيطلع 
+       coverage summary
+       من غير ما اكتبها فى الامر
+_______________
+  //  ميقلش عن 90 coverage لو عايزة ال  
+  دة karma.conf.js اكتب جو 
+      thresholds:{
+        functions:90,
+      }
+  _______
+    Jasmine ==> 
+  بمعنى  bdd (behavior driven development) بيحقق نظرية 
+        على ورق واى حد ممكن يشارك ولو برأية behavior بنكتب ال 
+   دة behavior وبعد كدة نكتب الكود اللى بيحقق ال 
+   ميزتة 
+   test cases طريقتة فى كتابة ال 
+    عشان يفهمها techincal مش محتاج حد 
+    بتاع الابلكشن behavior وكمان هيخلى اى حد يشارك فى ال
+    _______
+    matchers ==> jasmine موجود داخل الديكومنتشن بتاعة 
+    expect حاجة قصاد حاجة 
+    ________
+    karma ==> tool 
+    testing بتسهل عملية ال  
+    يعنى بتطلع كام واحد 
+    success 
+    كام واحد 
+    failed
+
+    ________________________________
+    tdd (test driven development) ==> 
+    التيست الاول وبعد كدة نكتب الكود بتاعنا
+     على الكود بتاعناtest cases بتاعنا ثم بنرن ال test cases بنكتب ال 
+    
+
+
+-->
+<form>
+  <input type="email" #email>
+  <input type="password" #password>
+  <button [disabled]="isLoggedIn"
+   (click)="login(email.value,password.value)">submit</button>
+</form>
+<h5 appHighLight class="my-title">{{title | titleCase}}</h5>
+
+<!--
+Continuous Integration
+اربط سرفيس بالبروجكيت بتاعى سوء كان على الجت هاب او البت باكيت
+معينة job والسرفيس دى بطلب منها تحققلى كذا 
+ng test نفذ امر push يعنى مثلا السرفيس دى مع كل
+ انا بديها انستركشن وهى بتنفذ machine يعنى السرفيس دى زى 
+______________
+Circle CI ==> demos free من السرفيس المدفوعة بتدى 
+1-  هعمل فولدر 
+2-karma.conf.js اضيف دة فى ال
+customLaunchers:{
+      ChromeHeadLessCI:{
+        base:'ChromeHeadless',
+        flags:['--no-sandbox']
+      }
+}
+-->

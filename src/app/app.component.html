@@ -1,0 +1,56 @@
+<!-- 
+  npm i --save ng2-file-module font-awesome hammerjs ngx-bootstrap express 
+  ng2-file-module ==> 
+    upload  بتساعدنى فى تعامل مع الملفات زى ا اعمل 
+بيساعدنى مثلا هخزن الملف دة فين حجم صورة uploader  لملف او يرفع صورة بيجى منها كلاس اسمة 
+-->
+ <!-- 
+   package.json
+   بالنسبة للبروجكيتmeta data type  ملف يعتبر ال 
+  -->
+
+<app-navbar></app-navbar>
+ <!-- 
+    primary outlet 
+    دا directive 
+    جاى مع باكتج الروتر اللى عندنا 
+ ____________________
+ <router-outlet></router-outlet>
+    outlet  بيوفر ديكراتف اسمة 
+    outlet  عايز اخلى ريفرنس يشاور على 
+    دة عشان اعرف اطلع منة الداتا
+________________________________________
+  عايزة اعمل 
+  animation routing 
+ main لازم احطة جو كونتينر اسمها                 
+-->
+<main [@routing]="outletRef.isActivated ? outletRef.activatedRoute:''">
+<router-outlet #outletRef="outlet"></router-outlet>
+</main>
+<!-- 
+ممكن يعمل اكتر من  
+<router-outlet></router-outlet>
+ودى بتبقى روت مساعدة غير اللى فوق بتبقى اساسى ودى بتسمى اوبزارف روت
+بس اذودلة 
+name=""
+واروح فى 
+routing 
+عند الباص واذود 
+outlet:'sidecomponent'
+-->
+<router-outlet name="sidecomponent"></router-outlet>
+<!-- 
+    اللى واخد 
+    outlets ==> sidecomponent
+    والباص بتاعها 
+    structuralDirectives
+-->
+<!-- <button [routerLink]="[{outlets:{sidecomponent:'structuralDirectives'}}]" mat-raised-button color="primary">open sidecomponent</button> -->
+
+<!-- هنا عايز يغير فى روت الرئيسى -->
+<!-- <button routerLink="{outlets:{primary:'binding',sidecomponent:'structuralDirectives'}}"
+mat-raised-button color="primary">change main root</button> -->
+
+<!-- <button routerLink="{outlets:{sidebar:null}}"
+mat-raised-button color="primary">close sidebar</button> -->
+<!-- <button (click)='test()'>test service</button> -->

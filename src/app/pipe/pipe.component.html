@@ -1,0 +1,144 @@
+<!--
+    pipe ==>  بتعمل ترانسفورم للداتا بيحولها من شكل لتانى
+    DecimalPipe:
+    Transforms a number into a string with a decimal point,
+    formatted according to locale rules.
+-->
+<p>pipe</p>
+users: {{users | json}}
+<br>
+uppercase: {{name | uppercase}}
+<br>
+titleCase: {{name | titlecase}}
+<br>
+slice: {{name|slice:2:4}}
+<br>
+number: {{5.678 | number:'1.2-3'}}
+<br>
+number: {{5.678 | number:'3.4-5'}}
+<br>
+percent: {{0.25 | percent}}
+<br>
+currency: {{0.25 | currency}}
+<br>
+currency GBP: {{0.25 | currency : 'GBP'}}
+<br>
+currency EUR: {{0.25 | currency : 'EUR'}}
+<br>
+date: {{date}}
+<br>
+<!-- 'ar-EG' ==> هيحول التاريخ للعربى -->
+date ar-EG: {{date | date:'ar-EG'}}
+<br>
+dateShort: {{date | date:'short'}}
+<br>
+<!-- +2 ==> time zone -->
+dateShort: {{date | date:'short':'+2':'ar-EG'}}
+<br>
+dateMedium: {{date | date:'medium':'+2':'ar-EG'}}
+<br>
+dateLong: {{date | date:'long':'+2':'ar-EG'}}
+<br>
+dateFull: {{date | date:'full':'+2':'ar-EG'}}
+<br>
+<!--
+    لو عايزة اجيب ال
+    date
+    بس
+-->
+date: {{date | date:'shortDate'}}
+<br>
+<!-- لو عايزة اجيب التايم بس -->
+time: {{date | date:'shortTime'}}
+<br>
+<!--
+     H ==> دى الساعة لحد 24
+     m ==> minute
+-->
+year: {{date | date:'yyy-M-EE-a-H-h-m-s '}}
+<br>
+<!--
+    chain Pipe
+    يعنى استخدم
+    pipe ور pipe
+-->
+chain pipe{{date | date:'yyy-M-EE-a-h-H-m-s' | uppercase}}
+<br>
+
+<!--
+    async pipe
+    هيتعامل مع اسنكورنس كود
+    عايز اطلع داتا من جو حاجة اسكنورنس
+    زى ال
+    observable , promise
+    بنستفاد منة بدل ما اخزن القيمة اللى راجعة فى متغير
+    وبيعمل
+    unsubscrip
+    لوحدة لما الكمبونت بيتعملة
+    destroy
+    مع ال
+    observable
+-->
+Without promise Async: {{promiseData}}
+<br>
+With promise Async Pipe: {{ promiseAsync| async}}
+<br>
+Without observable Async{{observableData}}
+<br>
+With observable Async: {{observableAsync | async}}
+<br>
+<!--
+وممكن اعمل
+chain
+مع ال
+async
+-->
+With observable Async&json: {{observableAsync | async | json}}
+<br>
+
+<!-- Custom Pipes -->
+<img [src]="userImage | defaultImage:placeholder:false">
+ <!--
+     Pure And Impure Pipes
+     الpipe
+     بيشتغل لما يكون عندى
+     pure change
+     يعنى اية
+     pure change
+     يعنى حاجة سمبل
+     يعنى بروبيرتى بسيطة
+     لما تكون معقدة
+     زى اراى وتعمل بوش فية
+     فدا impure
+     ودا
+     بيرن مع كل
+     change detection
+     فهيشوف التغيرات اللى هتحصل
+-->
+<br>
+total age : {{data | sum: 'age'}}
+<br>
+total speed : {{data | sum: 'speed'}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

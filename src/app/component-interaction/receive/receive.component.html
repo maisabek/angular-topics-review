@@ -1,0 +1,40 @@
+<p>receive</p>
+<span>Popup: {{message}}</span>
+data from send component : {{receiveData}}
+<br>
+myTitle: {{myTitle}}
+<br>
+<button (click)="push()">execute push fn</button>
+
+<hr>
+
+<!-- two data binding مثال على ال  -->
+<h5>two data binding</h5>
+<input type="text" (keyup)='titleChange.emit($event.target.value)'
+                    [value]="title">
+
+in receive and title is: {{ title}}
+<!-- 
+     لو عايزة اعرض الكونتينت هنا عن طريق
+     @ContentChild 
+-->
+<!-- 
+     عشان يعرض اللى جو الكمبونت تسمى 
+     Content Projection
+-->
+<ng-content></ng-content>
+<hr>
+<!-- طب لو عايزاة يعرض حاجة معينة -->
+<ng-content select=".demo1"></ng-content>
+<hr>
+<ng-content select="h5"></ng-content>
+<hr>
+
+<h4>Change log:</h4>
+<ul>
+  <li *ngFor="let change of changeLog">{{change}}</li>
+</ul>
+
+<!-- binding to custom properties -->
+
+<!-- element : {{element.content}} -->

@@ -1,0 +1,53 @@
+<!--
+    لازم يكون اللينك نفسة بالظبط
+    [routerLinkActiveOptions]="{exact:true}"
+    ____________________________________________
+    لو عايزة اضيف كويرى فوق فى اللينك
+    [queryParams]="{auth:true}
+-->
+<div class="navbar">
+<ul>
+    <li>
+        <a
+           routerLink='binding' routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact:true}" #Bindingref="routerLinkActive">
+        Binding
+        </a>
+        <!-- {{Bindingref.isActive}} -->
+    </li>
+    <!--
+        Link parameters array
+      <a [routerLink]="['/hero', hero.id]">
+        <span class="badge">{{ hero.id }}</span>{{ hero.name }}
+      </a>
+    -->
+
+    <li><a routerLink='/componentInteraction' routerLinkActive="active">Component Interaction</a></li>
+    <li><a routerLink='/changeDetection' routerLinkActive="active">change Detection</a></li>
+    <li><a routerLink='/input' routerLinkActive="active">Input</a></li>
+    <li><a routerLink='/Lifecycle' routerLinkActive="active">Life Cycle</a></li>
+    <li><a routerLink='/view' routerLinkActive="active">ViewChild&Children</a></li>
+    <li><a routerLink='/directives' routerLinkActive="active">Directives</a></li>
+    <li><a routerLink='/pipe' routerLinkActive="active">Pipe</a></li>
+    <li><a routerLink='/forms' routerLinkActive="active">Forms</a></li>
+    <li><a routerLink='/dependencyInjection' routerLinkActive="active">DependencyInjection</a></li>
+    <li><a routerLink='/routing'>routing</a></li>
+    <li><a routerLink='/animation' routerLinkActive="active">Animation</a></li>
+    <li><a routerLink='/httpclient' routerLinkActive="active">HttpClient</a></li>
+    <li><a routerLink='/ngx' routerLinkActive="active">Ngx</a></li>
+    <li><a routerLink='/typescript' routerLinkActive="active">TypeScript</a></li>
+    <li><a routerLink='/ngrx' routerLinkActive="active">NgRx</a></li>
+
+    <li><button (click)="changeCurrentLang('en')" mat-raised-button color="accent">en</button></li>
+    <li><button (click)="changeCurrentLang('ar')" mat-raised-button color="accent">ar</button></li>
+    <li><a  routerLink="/DesignPattern" routerLinkActive="active">DesignPattern</a></li>
+    <li><a  routerLink="/subject" routerLinkActive="active">subject</a></li>
+    <li><a  routerLink="/operator" routerLinkActive="active">operators</a></li>
+    <li><a  routerLink="/decorator" routerLinkActive="active">decorator</a></li>
+    <li><a  routerLink="/polymorphism" routerLinkActive="active">polymorphism</a></li>
+
+    <li><a routerLink="/interval" routerLinkActive="active">interval</a></li>
+
+    <div class="clearFix"></div>
+</ul>
+</div>

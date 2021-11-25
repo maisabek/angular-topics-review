@@ -1,0 +1,11 @@
+<p>child works!</p>
+<ng-template #defaultButtons>
+    <button>I'm default button</button>
+</ng-template>
+
+<!-- 
+    لو جايلك داتا اعرضها مجاش اعرض الديفلت باتون  
+-->
+<ng-container *ngTemplateOutlet="parentTemplate ? parentTemplate : defaultButtons">
+
+</ng-container>

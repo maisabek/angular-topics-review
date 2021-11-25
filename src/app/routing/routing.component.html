@@ -1,0 +1,5 @@
+
+<button (click)='storeItemInLocalStorage()'>storeItemInLocalStorage</button>
+<mat-nav-list>
+    <a mat-list-item [routerLink]="product.id" fragment="route" *ngFor="let product of products"> {{ product.name }} </a>
+ </mat-nav-list>

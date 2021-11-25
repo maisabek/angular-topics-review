@@ -1,0 +1,59 @@
+details from server : {{ProductContainer | json}}
+<hr>
+<!--
+   {{activateRoute}}
+  دى هترجع
+   Route(url:'home/10', path:'home/:id')
+ -->
+{{activateRoute}}
+<hr>
+<!--
+   دى هترجع
+   home,10
+-->
+url : {{activateRoute.url | async}}
+<br>
+params : {{activateRoute.params | async | json}}
+<br>
+
+<!--
+   snapshot
+   بدل ما يعمل
+   | async
+   يعنى بدل ما يعمل
+   subscribe
+-->
+
+params snapshot : {{activateRoute.snapshot.params | json}}
+<br>
+<!--
+   paramMap
+لو عايزة حاجة معينة زى ال
+id
+يعنى ارجع قيمتة
+-->
+paramMap : {{activateRoute.snapshot.paramMap.get('id')}}
+<br>
+<!--
+   has('id')
+عايزة اشوف هل ال id دة موجود
+-->
+paramMap : {{activateRoute.snapshot.paramMap.has('id')}}
+<br>
+<!--
+   keys
+هيجيب كل الكى اللى موجودة
+-->
+paramMap : {{activateRoute.snapshot.paramMap.keys | json}}
+<br>
+queryParams: {{activateRoute.snapshot.queryParams | json}}
+<br>
+fragment : {{activateRoute.snapshot.fragment | json}}
+<br>
+<button (click)="goHome()">go home</button>
+
+<p>product-details works!</p>
+pageId: {{pageId}}
+<br>
+<button mat-raised-button (click)='goToProductDetails(pageId + 1)' color="primary">back</button>
+<button mat-raised-button (click)='goToProductDetails(pageId - 1)' color="accent">next</button>

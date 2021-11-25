@@ -1,0 +1,188 @@
+
+
+<!--
+    <comp-with-host-binding dirWithHostBinding></comp-with-host-binding>
+ -->
+
+<p>binding</p>
+<!--
+binding
+used to define the communication between a component and the DOM
+او
+to link your data to your view layer.
+او
+communication between your typescript code of your component and
+your template which user sees.
+-->
+<hr>
+<!--
+Data Interpolation
+one-way data binding technique which is used to output the data from a
+TypeScript code to HTML template (view)
+Interpolation is a special syntax that Angular converts into a property binding
+___________________
+ Interpolation and property binding can set only properties, not attributes
+
+ only work in a normal template not within another expression of that template
+ امتى استخدمها
+ if you want to output something in your template print some text to it
+
+-->
+<h5>Data Interpolation</h5>
+{{ 1 + 1}}
+<h2>{{greetHello()}}</h2>
+<h2>{{siteurl}}</h2>
+<input type="text" disabled="{{true}}"><br>
+<input type="text" disabled="{{false}}"><br>
+<p>{{allow}}</p>
+
+<hr>
+
+<!--
+property binding
+One-Way from model to view
+to set an element property to a non-string data value
+one-way data binding technique. In property binding, we bind a property of a DOM
+element to a field which is a defined property in our component TypeScript code
+
+Property binding in Angular
+helps you set values for properties of HTML elements or directives.
+
+امتى استخدمها
+if you want to change some property be that of a html element or as you will
+later learn of a directive or components
+
+-->
+<h5>property binding</h5>
+<img [src]="imgUrl">
+<input type="text" [disabled]="false">
+<input type="text" [disabled]="true">
+<p [innerText]="allow"></p>
+<hr>
+
+<!--
+    property binding  is not the same as a directive
+    it's totally different
+    we are binding to a property of the directive
+-->
+<!--
+    binding class
+    allow us to add or remove css class
+-->
+<h5>binding class</h5>
+<h5 [class]="successVarable">[class]="successVariable"</h5>
+<h5 [class]="messageclass">success:flag,successStyle:!flag</h5>
+<h5 class="successStyle" [class]="successVaraible">binding class</h5>
+<h5  [class.successStyle]="flag" dirWithClassBinding>binding class (flag)</h5>
+<h5  [ngClass]="messageclass">ng class</h5>
+<h5 [ngClass]="{success:flag,successStyle:!flag}">ng class</h5>
+<h5 [ngClass]="{'success':num == 4}">ng class 2</h5>
+<hr>
+<!--
+Binding to an attribute
+Attribute binding in Angular helps you set values for attributes
+directly. With attribute binding, you can improve accessibility
+style your application dynamically, and manage multiple CSS
+classes or styles simultaneously
+-->
+<p [attr.attribute-you-are-targeting]="expression">
+    Binding to an attribute
+</p>
+<button [attr.aria-label]="actionName">{{actionName}} with Aria</button>
+<br>
+<tr><td [attr.colspan]="1 + 1">One-Two</td></tr>
+
+<hr>
+<!--
+    style binding
+    an attribute directive added like an attribute
+    ____________
+    big advantage of ngStyle , it allows you to dynamically update the styles
+    <h5 [style.color]="flag ? 'blue' : 'gray'">style binding</h5>
+    ___________
+    the square brackets are not part of the directive
+    the square brackets indicate that we want to bind to some property on this directive
+    and this property name happens to also be ngStyle
+-->
+<h5>style binding</h5>
+<h5 [style.background-color]="'orange'">style binding</h5>
+<h5 [style.color]="styleVariable">style binding</h5>
+<h5 [style.color]="flag ? 'blue' : 'gray'">style binding</h5>
+<h5 [ngStyle]="{backgroundColor : flag ? 'blue' : 'gray'}">style binding 4</h5>
+
+<h5 [ngStyle]="titleStyle">style binding</h5>
+<h5 [ngStyle]="{backgroundColor:'blue'}">style binding 2</h5>
+
+<hr>
+
+<!--
+    event binding
+ One-Way from view to model
+ _______________
+ Template statements are methods
+  or properties that you can use in your HTML to respond to user events
+__________________
+(click) ==> target event name
+onClick() ==> Template statement
+-->
+<input type="text" (input)="onClick()">
+
+<button (click)="onClick()" >Event binding</button>
+<!--
+    $event super important is kind of a reserved variable name
+    will simply be the data emitted with that event
+-->
+<button (click)="greeting($event)">Event binding</button>
+<button (click)="greet = 'welcome'">Event binding</button>{{greet}}
+<button (myClick)="clickMessage=$event" clickable>click with myClick</button>
+{{clickMessage}}
+<!--
+     #myinput
+     ريفرنس بيشاور على الانبت دة وممكن بدل الهاش اكتب
+     ref-myinput
+     ولازم احط الاكشن المناسب عشان يظهر القيمة
+     عشان اخد القيمة دى فى التايب اسكربت عن طريق
+     @ViewChild('myinput') input
+-->
+<input #myinput type="text">
+<button (click)="logMessage(myinput.value)">event binding</button><br>
+<hr>
+<!--
+  two way data binding
+    [(ngModel)]='fname'
+    عاايزة لما يدخل فى الانبت فيلد كلام ياخد الكلام دة ويحطة فى المتغير
+    fname
+  المسئوله عن انها تعرض الداتا من الفيو للمودل ومن المودل للفيو
+-->
+<h5>two way data binding</h5>
+<div class="py-4">
+    <input [(ngModel)]='fname' class="form-control"/>
+    <h2>{{fname}}</h2>
+</div>
+<hr>
+<!-- two way data binding -->
+<input type="text" (input)="onUpdateServerName($event)">
+{{serverName}}
+
+<!--
+ngNonBindable
+متعمليش كومبيل للحتة دى
+ميجبش قيمة النام
+-->
+<h5 ngNonBindable>fname (ngNonBindable) : {{fname}}</h5>
+
+ <!-- لو عايزة انادى على الكمبونت -->
+ <ng-container *ngComponentOutlet="dummy"></ng-container>
+
+
+<!--
+Angular Elements
+custom HTML elements يعنى native web components بيسمح ان احول الكمبونت ل
+
+allows you to convert ordinary Angular components into native web components (custom HTML elements).
+That's a pretty awesome feature and you actually only need to write two lines of code to get there.
+npm install --save @angular/elements
+-->
+
+
+<div [innerHTML]="content"></div>

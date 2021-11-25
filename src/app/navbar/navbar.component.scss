@@ -1,0 +1,22 @@
+.navbar{
+    background-color:rgb(133, 130, 130);
+    top: 0;
+    left: 0;
+    width: 100%;
+    ul li{
+        float: left;
+        list-style-type: none;
+        margin:1% 6px;
+        a{
+            text-decoration: none;
+            color:rgb(255, 255, 255);
+
+        }
+    }
+}
+.clearFix{clear: both;}
+.active{
+    color: rgb(133, 130, 130) !important;
+    background-color: white;
+    padding: 10px;
+}

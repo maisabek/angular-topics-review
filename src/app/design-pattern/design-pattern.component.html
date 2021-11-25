@@ -1,0 +1,53 @@
+<!-- 
+/*
+design pattern
+طريقة كتابة الكود بس مش طريقة كتابة الكود زى ما احنا عايزين
+للكود او تقسيم الكود execution طريقة ال 
+
+singlton حلول برمجية لمشكلة عامة ناس كتير بتقبلها زى ال 
+بتاعك يكون شغال بشكل المطلوب  architactوال maintainable بتخلى الكود بتاعى 
+design pattern==> MVC و MVVM بينقسم 
+____________________
+فى الانجولار ؟؟  design pattern ال
+1- singleton
+ مرة واحدة بس initilaize او كلاس ب service ان يكون عندى سورس واحد لل 
+يعنى storage يعنى اقدر اخزن فيها فاليو معينة او حذف قيمة لكن هى مش بتشتغل ك 
+الداتا دى راحت refresh مجرد ما اعمل 
+؟؟ singleton ولية اصلا اخليها singleton بتاعتى service ازاى اعرف ال 
+محتاجين نقوم السرفيس دى اول لما الابلكشن يشتغل auth service زى فى ال 
+singleton فحنا محتاجين نشغلها مرة واحدة بس فبالتالى هنحتاج نخليها 
+لما احط دى قبل الكلاس بتاع السرفيس @Injectable({providedIn: 'root'}) 
+app.module فى ال providers بحطها فى اراى ال  singleton ولو مش عايزة السرفيس دى 
+__________________
+2- feature - component
+دى  operation ال operation او بيستخدم  http request  لو عندك كمبونت بتخاطب 
+ممكن استخدمها فى اكتر كمبونت او بتستخدم سرفيس تانية سرفيس خارجية 
+feature service تانية فالافضل انى اقسمها وخلى فى library لو هعمل لوجيك فى الكمبونت دى ولوجيك دة بيعتمد على 
+كتير logic مع الكمبونت دى من غير ما اعمل  connect مسئولة عن الفيتشر تكون بتعمل اللوجيك وتعمل 
+فى الكمبونت دى 
+يعنى من الاخر اخد اوبجكيت من السرفيس دى عند الكمبونت ونادى على الفنكشن دى 
+_____________________
+3- smart component - dumb (or feature component presentation component)
+ببعت داتا لمجرد العرض
+smart component  ==>
+dumb component or presentation component
+ هى اللى بيبقى فيها الفنكشن هى اللى مسئولة انها تبعت الداتا اللى هتنعرض فى ال
+feature component ==> عشان اللوجيك بيكون جوها
+_______________
+4- observer (in rxjs)
+_____________
+Facade Design Pattern ==> مش بيستخدم فى كل المشاريع
+communicate على كل السرفيس الموجودة فى سرفيس واحدة بتعمل  listen عبارة عن سرفيس برادج بجمع كل السرفيس اوبعمل 
+مع كل الكمبونت
+______________________
+؟؟ MVC و MVVM  الفرق بين ال 
+ MVC ==> model view controller
+ اللى هو اللوجيك بيكون لوحدة controller ال
+ بيكون لوحدة view ال
+ MVVM ==> model view view model
+ view فبالتالى اللوجيك موجود فى ال controller مفيش 
+*/ 
+
+
+
+-->

@@ -1,0 +1,74 @@
+<p>input</p>
+<!--
+    ? ==> اسمها
+    Safe navigation operator
+    بتعمل اتشك ضد ال
+    null,undefined
+-->
+Safe navigation operator : {{ item?.name }}
+<!--
+    $any()
+       لو الاوبجكيت ندات على
+       key
+       مش موجودة حوة الاوبجكيت
+       هيطلع ايرور عشان احل الايرور دة ب
+       $any()
+       يعنى لو ندات على
+       key
+       مش موجود ميطلعش ايرور
+-->
+<p>input work</p>
+any : {{ $any(title).name }}
+<hr>
+<app-svg></app-svg>
+<hr>
+
+<!--
+    Angular Template يحتوي على نوعين من الـمتغيرات
+    1-Template Input Variable
+    مثال
+    let h
+      variable وهو عبارة عن
+       scope يكون متاح داخل الـ
+       
+    2-Template Reference Variable
+    مثال
+    <form #myForm></form>
+-->
+
+<!--
+هنا الريفرينس مش هقدر اخد منة الداتا الا لو انا عملة ايفينت مناسب
+-->
+
+<input type="text" #ref>
+{{ref.value}}
+
+<label>Type something:
+    <input #customerInput (keyup)="data = customerInput.value ">{{data}}
+</label>
+
+<!--
+    (keyup.enter)
+طول ما بكتب مش هينفذ الفنكشن اول لما اضغط انتر ينفذ
+وممكن يحط بدل انتر
+esc
+لما يضغط على
+esc
+ينفذ
+او ممكن يحط اى رقم لو ضغط علية ينفذ
+وومكن لو ضغط سهم اللى تحت ينفذ ب
+(keyup.arrowdown)
+
+-->
+<input type="text" (keyup.enter)="log($event)">
+<input type="text" (keyup.arrowdown)="log($event)">
+
+
+<!--
+    blur
+لما يكتب فى الانبت ويطلع يعمل فوكس اوت
+-->
+<input type="text" (blur)="log($event)">
+<!-- ممكن احط اكتر من فنكشن -->
+<input type="text" #myInput (blur)="log($event);anotherlog();myInput.value=''">
+<hr>

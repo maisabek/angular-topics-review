@@ -1,0 +1,4 @@
+
+<input type="text" (keyup)="data = $event.target.value">
+<button (click)="addName(data);myChild.refresh()">click</button>
+<app-child [names]="names" #myChild></app-child>
