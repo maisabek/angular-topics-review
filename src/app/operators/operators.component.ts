@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { interval, fromEvent, of, from,Notification, asyncScheduler, Observable, concat, EMPTY, forkJoin, bindCallback, BehaviorSubject, combineLatest, defer, iif, throwError, merge, Subject, GroupedObservable,partition, range, Timestamp, ConnectableObservable } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { map, retry, retryWhen, scan, pluck, auditTime, tap, share, take, count,first, takeLast, last, takeWhile, mergeMap, catchError, delay, switchMapTo, mapTo, bufferToggle, buffer, bufferWhen, bufferTime, bufferCount, exhaustMap, exhaust, expand, groupBy, reduce, mergeScan, pairwise, startWith, mergeAll, windowWhen, takeUntil, skipWhile, skip, skipLast, skipUntil, debounce, audit, throttle, distinctUntilKeyChanged, distinct, distinctUntilChanged, ignoreElements, elementAt, sampleTime, sample, single, delayWhen, dematerialize, materialize, timestamp, timeInterval, timeout, timeoutWith, findIndex, toArray, defaultIfEmpty, isEmpty, every, withLatestFrom, publishBehavior, refCount, publish, publishLast, publishReplay } from 'rxjs/operators';
+import { map, retry, retryWhen, scan, pluck, auditTime, tap, share, take, count,first, takeLast, last, takeWhile, mergeMap, catchError, delay, switchMapTo, mapTo, bufferToggle, buffer, bufferWhen, bufferTime, bufferCount, exhaustMap, exhaust, expand,
+   groupBy, reduce, mergeScan, pairwise, startWith, mergeAll, windowWhen, takeUntil, skipWhile, skip, skipLast, skipUntil, debounce, audit, throttle, distinctUntilKeyChanged, distinct, distinctUntilChanged, ignoreElements, elementAt, sampleTime, sample, single, delayWhen, dematerialize, materialize, timestamp, timeInterval, timeout, timeoutWith, findIndex, toArray, defaultIfEmpty, isEmpty, every, withLatestFrom, publishBehavior, refCount, publish, publishLast, publishReplay } from 'rxjs/operators';
 
 interface Course{
   id:number
@@ -31,10 +32,11 @@ export class OperatorsComponent implements OnInit {
   fetchDataButton = new Subject();
   nameSubject1 = new Subject<Person>();
 ngOnInit() {
-
 /*
 retry ==> انى اعمل كونكت او ريكونكت عدد مرات معين يعنى اما يخلص يبدء تانى من الاول
-retryWhen ==> observable عايز يعمل ريكونكت بس بشرط ما بتاخد منى
+retryWhen ==>
+Errors شايل جواة ال  observable عايز يعمل ريكونكت بس بشرط ما بتاخد منى
+ولو انا مدتهاش شرط هتفضل شغالة لا ما لانهاية
 */
 const obs7$=interval(1000).pipe(
   map(value => {
@@ -43,7 +45,7 @@ const obs7$=interval(1000).pipe(
     }
     return value
   }),
-  retry(2) // عايز يعمل ريكونكت مرتين
+  retry(2) // عايز يعمل ريكونكت مرتين هيكرر مرتين وبعدان فى الأخر هيرمى الأيرور
 )
 obs7$.subscribe(
 value =>{
@@ -96,9 +98,15 @@ auditTime
  بيستنى الوقت اللى مديهولوة وبعد كدة يسمع منى
 
 debounceTime
- هو بيفضل يسمع لحد ما خلص كتابة وبعد كدة يستنى الوقت اللى مديهولة وبعد كدة يرجع يشتغل
+هو بيفضل يسمع يعنى ينفذ لحد ما خلص كتابة وبعد كدة يستنى الوقت اللى مديهولة وبعد كدة يرجع يشتغل
+ observable بس لل setTimeout بيعمل زى
+ result علية فبدل ما اجيب ال subscribe دة المفروض ان اعمل event معين ال event لو عامل
+debounceTime بقيمة الوقت اللى ادتوة لل result بيأخر ال subscribe علطول اول لما يحصل
 */
 
+// filtered(){
+//   this.fileredElem=this.allData.filter((res:any)=>res.Name.toLowerCase().indexOf(this.value) !== -1 || res.Name.indexOf(this.value) !== -1 || res.Name.toUpperCase().indexOf(this.value) !== -1)
+// }
 const cities = [
   "rome",
   "madrid",
@@ -115,7 +123,7 @@ const input = document.querySelector("input");
 const suggestions = document.querySelector("#suggestions");
 
 fromEvent(input,'keyup').pipe(
-  // value وبعد كدة target استقبلت ايفنت بقولة دور على حاجة اسمها
+//value دةورجع ال path يعنى دور على ال  value وبعد كدة target استقبلت ايفنت بقولة دور على حاجة اسمها
   pluck('target','value'),
   // throttleTime(2000), // هياخد اول حرف ويعمل فلتر علية وباقى الحروف لا
   auditTime(2000), //بيستنى ثانيتين وبعد كدة يسمع منى
@@ -151,14 +159,13 @@ fromEvent(input,'keyup').pipe(
   )
   .subscribe(console.log)
 // يخلص  يبدء الاوبزرفابل يشتغل واما يخلص يطبعلى احدث حاجة يعنى طول ما بعمل كلك مش هيبعت داتا ولما اوقف الكلك يبعت داتا emition بعد ما ال  source observable لداتا اللى طالعة من  ignore هيفضل يعمل
-
-  /*
+/*
    of , from
    observable الاتنان بياخدوا داتا ويحولوها ل
     flating الفرق بينهم هو ال
    of ==> argument بتاخد اتنان
    from ==> one argument
-  */
+*/
  of([1,2,3]).subscribe(console.log) // [1,2,3] ==> يعنى يحط الاقواس flating عمل
  from([1,2,3]).subscribe(console.log) // 1 2 3 ==> يعنى شايل الاقواس flating مش عامل
 
@@ -235,7 +242,7 @@ nesting loop يعنى على طريقة اللوب كأنى بعمل mapping ب�
 */
 
 // nesting loop بيشتغل ك
-const letters$ = of('x', 'y', 'z'); // obs 1
+    const letters$ = of('x', 'y', 'z'); // obs 1
     const numbers$ = of(1, 2, 3); // obs 2
 
     const combined = letters$.pipe(
@@ -316,7 +323,6 @@ const letters$ = of('x', 'y', 'z'); // obs 1
   reactive فنكشن عايز تخلية callback لو عندى كود قديم كلة
   من الفنكشن observable بطلع
   */
-
   const someFunction = (x, y, callBack) => { // callBackFn فنكشن عادية بتاخد
     callBack(x, y)
   }
@@ -350,7 +356,7 @@ const letters$ = of('x', 'y', 'z'); // obs 1
       observer.complete();
     });
     const obs13$ = interval(1000).pipe(take(5));
-    obs2$.subscribe(x => console.log('obs 2 ', x));
+    // obs2$.subscribe(x => console.log('obs 2 ', x));
     const combinedObs1$ = combineLatest(obs12$, obs13$);
     combinedObs1$.subscribe(
       console.log, // complete
@@ -358,14 +364,14 @@ const letters$ = of('x', 'y', 'z'); // obs 1
       () => {
         console.log('complete');
       }
-    );
+    )
 
     const movies = [
       { id: 1, name: 'movie 1' },
       { id: 2, name: 'movie 2' },
       { id: 3, name: 'movie 3' }
-    ];
-    const user = { name: 'user', favoriteMovieIds: [2] };
+    ]
+    const user = { name: 'user', favoriteMovieIds: [2] }
     const movies$ = new BehaviorSubject(movies);
     const user$ = new BehaviorSubject(user);
     combineLatest(movies$, user$)
@@ -373,18 +379,16 @@ const letters$ = of('x', 'y', 'z'); // obs 1
         map(([movies, user]) =>
           movies.filter(movie => user.favoriteMovieIds.includes(movie.id))
         )
-      )
-      .subscribe(console.log);
+      ).subscribe(console.log);
     setTimeout(() => {
       user.favoriteMovieIds.push(3);
       user$.next(user);
     }, 3000)
-
     this.clicks$.subscribe();
-     /*
+  /*
     withLatestFrom
-لداتا push هو اللى يعمل source observable  بس لازم ال  combineLatest نفس ال
-    */
+    لداتا push هو اللى يعمل source observable  بس لازم ال  combineLatest نفس ال
+  */
 const clicks11$ = fromEvent(document, 'click');
 const data11$ = ajax.getJSON('https://jsonplaceholder.typicode.com/todos/1');
 clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل كلك هيجيب احدث حاجة من الاتنين اوبزرفابل
@@ -411,18 +415,22 @@ clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل
     )
    combined$.subscribe(console.log)
 
-/*
-    timer
+    /*
+    timer(value , time)
     interval بتتاخر ثم تشتغل و
     emit بتاخد حاجتين هتشتغل بعد اد اية والقيمة اللى هتعملها
-    */
-     /* const timer$ = timer(3000, 1000).pipe(take(3));
-    timer$.subscribe(console.log); // 0 1 2 */
+    يعنى كل اما يعدى الوقت اللى مديهالوها تبعت داتا
 
-    /*
-    const range$ = range(0, 10); // Creates an Observable that emits a sequence of numbers within a specified range.
+    const timer$ = timer(3000, 1000).pipe(take(3));
+    timer$.subscribe(console.log); // 0 1 2
+    يعنى بعد ثانية ابعت فاليو ويبعت اللى بعدها بعد ثانية وهكذا
+
+    ________________________
+     //Creates an Observable that emits a sequence of numbers within a specified range.
+    const range$ = range(0, 10);
     range$.subscribe(console.log); // هتطبع الاعداد من صفر الى 9 */
     /*
+
     generate
     بس على  اكبر range بيعمل نفس شغل  range نسخة مطورة لل
     generate(initial,condition,iterater هتذيد بأية iterate يعنى ال , result selector الشكل اللى عايزاة يطلع فى الاخر)
@@ -446,6 +454,7 @@ clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل
       of('something went wrong') // متحققش condition لو ال
     )
     isGusetUser$.subscribe(console.log);
+
     /*
     merge
     مجرد ما الحاجة توصل تنعرض علطول
@@ -464,54 +473,64 @@ clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل
     merged$.subscribe(url => this.posts.push(url));
    /*
    buffer
-   لشوية داتا وبعد كدة يقدر يتعامل معاهم  save بيعمل cash ال
+بتمسك الداتا شوية وبعد كدة تبعتها  sets ل source observableبتقسم الداتا اللى فى ال
+ set ب set
+لشوية داتا وبعد كدة يقدر يتعامل معاهم  save بيعمل cash ال
    observable بتاخد
-   ______________
-   bufferWhen
-   selectorFn بس بياخد  buffer نفس ال
-   _________________
-   bufferTime
-   يتجاهل لمدة اد اية
-   ____________
-   bufferCount
-   Event يتجاهل كام
+value ل emit دة هيعمل observable مع كللك مع كل كلك ال  document على ال fromEvent يعنى مثلا
+ buffer دى علطول عايزة يعملها بشرط فدا دور ال  value لل emit هو مش عايز يعمل
    */
-
     // interval(1000).subscribe(console.log);
-
     setTimeout(() => {
       this.start$.next();
-    }, 3000);
-    setTimeout(() => {
-      this.stop$.next();
-    }, 6000);
-    // تخلص يعنى بعد 3 ثوانى start دى اللى  subject هيتجاهل الكلك دة لحد مال
+    }, 3000)
+    // تخلص يعنى بعد 3 ثوانى start دى اللى subject هيتجاهل الكلك دة لحد مال
     fromEvent(document, 'click')
       .pipe(buffer(this.start$))
       .subscribe(console.log)
 
+    /*
+    bufferWhen
+    selectorFn بس بياخد  buffer نفس ال
+    */
     fromEvent(document, 'click')
       .pipe(bufferWhen(()=>this.start$))
       .subscribe(console.log)
-
+     /*
+    bufferTime
+   يتجاهل لمدة اد اية
+     */
     fromEvent(document, 'click')
       .pipe(bufferTime(3000))
-      .subscribe(console.log);
+      .subscribe(console.log)
 
+     /*
+      bufferCount
+      Event يتجاهل كام
+      لكام ايفنت cash يعمل
+     */
       fromEvent(document, 'click')
       .pipe(bufferCount(3))
       .subscribe(console.log);
-
-      // يبدء يتجاهل امتى وينتهى امتى
+      /*
+       bufferToggle
+      اامتى وينتهى امتى cash يبدء يعمل
+      */
+      setTimeout(() => {
+        this.stop$.next();
+      }, 6000)
     fromEvent(document, 'click')
-      .pipe(bufferToggle(this.start$, () => this.stop$))
+      .pipe(bufferToggle(this.start$, () => this.stop$)) //يبدء يتجاهل امتى وينتهى امتى يعنى بعد 3 ثوانى هيبدء يسجل وبعد 6 ثوانى هيظهرهم كلهم
+
       .subscribe(console.log);
   /*
   exhaust
+  inner observable بيطلع observable لو عندى
  للباقى ignore  واحد وبتعمل inner observable بتخلينى اتعامل مع
-  ___________________
+ هنا هتبعت exhaust يعنى مثلا لو يوزر داخل على الموقع عمل 30 او 40 كلك هيبعت 30 او 40 ريكوست ف
+ للباقى ignore ريكوست وتعمل
+ ___________________
   exhaustMap ==> exhaust + map
-
   استخدمهم فى اية ؟
   observable لو عندى لوجن اسكرين والكلك علية يطلع باكشن
  */
@@ -529,13 +548,12 @@ clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل
       exhaustMap(event => interval(1000).pipe(take(4)))
     );
     higherOrder$.subscribe(console.log);
-
     /*
     expand
      نفس الركرجن
     */
     const fetchData = this.fetchDataButton.pipe(
-    //  ارقام حولة لاسترنج interval يعنى لو عندى stream الى stream بيحول من
+    //  ارقام حولة لاسترنج interval يعنى لو عندى stream  stream بيحول من
       mapTo(1), // واحد دا الرقم اللى هيبدء بية
       expand((index: number) => (index !== 3 ? of(index + 1) : EMPTY)),
       tap((index: number) => console.log("index is ", index)),
@@ -545,15 +563,17 @@ clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل
         })
       )
     )
-
     fetchData.subscribe(console.log)
 
-    /*
-    groupBy
-   بس كلهم راجعين فى نفس الاراى groups لو عندى داتا راجعة من السرفير الداتا عبارة عن
-        groups بتقسم الداتا دى ل groupBy
-   */
-
+/*
+  groupBy
+ بس كلهم راجعين فى نفس الاراى groups لو عندى داتا راجعة من السرفير الداتا عبارة عن
+  او ايا كان الداتا اللى راجعة فيها
+  على اساسها groupsبتاخد فنكشن اللى هتعمل
+  يعنى بتعمل فلتر بناء على الفنكشن دى
+  GroupedObservable وبترجع
+  groups بتقسم الداتا دى ل groupBy
+*/
     const courses$ = of<Course>(
       { id: 1, name: 'JavaScript' },
       { id: 2, name: 'Parcel' },
@@ -565,25 +585,19 @@ clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل
     )
     courses$
       .pipe(
-        groupBy((course: Course) => course.id),  // id بيعمل فلتر بناء على ال
-        /*
-         دى هترجع
-        GroupedObservable {_isScalar: false, key: 1, groupSubject: Subject, refCountSubscription: GroupBySubscriber}
-        GroupedObservable {_isScalar: false, key: 2, groupSubject: Subject, refCountSubscription: GroupBySubscriber}
-        GroupedObservable {_isScalar: false, key: 4, groupSubject: Subject, refCountSubscription: GroupBySubscriber}
-        GroupedObservable {_isScalar: false, key: 3, groupSubject: Subject, refCountSubscription: GroupBySubscriber}
-        */
-        tap(console.log),
+        groupBy((course: Course) => course.id),  //GroupedObservable وبيرجع id بيعمل فلتر بناء على ال
         mergeMap((coursesGroup$: GroupedObservable<number, Course>) =>
           coursesGroup$.pipe( // عشان يمسكهم جروب جروب
             // cur ==> current value اللى بلف بيها
             // [...acc, cur] ==> cur وهيذود ال split acc
-            reduce((acc: Array<Course>, cur: Course) => [...acc, cur], []),
+            reduce((acc: Array<Course>, cur: Course) => {
+             return  [...acc, cur]
+            },[]),
             map((arr: Array<Course>) => {
               return { // key , value عشان يضيف كلمة
                 key: arr[0].id,
                 value: [...arr]
-              };
+              }
             }),
             /*
            {key: 1, value: Array(2)}  Array(2) ==>  {id: 1, name: "JavaScript"} {id: 1, name: "TypeScript"}
@@ -591,95 +605,71 @@ clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل
            {key: 4, value: Array(2)}  Array(2) ==>   {id: 4, name: "NgRx"} {id: 4, name: "RxJs"}
            {key: 3, value: Array(1)}  Array(1) ==>  {id: 3, name: "TSLint"}
             */
-            tap((data: GroupCourses) => console.log(data))
           )
         )
-      )
-      .subscribe(console.log)
-      /*
-      reduce - scan - mergeScan
-      reduce
-      mathmatical operator
-   فنكشن بستخدمها فى التجميع accumaltor Function بيستخدم
-          observable لو عايزة اجمع داتا  موجودة جو
-        seat اسمها optional وحاجة
-      ____________________
-      scan
-      transfromation operator
-         accumaltor Function بيستخدم
- optional value اللى هى ال  seat اسمها optional وحاجة
- observable او على observable بستخدمها لو عايزة اعمل تجميع جو
-      _____________________
-      mergeScan
-
-
-      */
-      const interval$ = interval(1000).pipe(take(4));
+      ).subscribe(console.log)
+    /*
+      scan (transfromation operator)
+      observable او على observable بستخدمها لو عايزة اعمل تجميع جو
+      initial value اللى هى ال  seat اسمها optional وحاجة accumaltor Function بتاخد
+    */
+      const interval$ = interval(1000).pipe(take(4)); // 0 1 2 3
        //scan
       const count5 = interval$.pipe(
         scan((acc: number, value: number) => {
-          console.log(`acc is ${acc} - value is ${value}`);
-            /*
-      initial value فى حالة انى مش حاطة
-        acc is 0 value is 1
-        acc is 1 value is 2
-        acc is 3  value is 3
-        acc is 6 value is 4
-         ______________________
-         وليكن 5 initial value فى حالة انى  حاطة
-         acc is 5 value is 1
-        acc is 6 value is 2
-        acc is 8  value is 3
-        acc is 11 value is 4
-      */
+          // acc ==> المتغير اللى بجمع فية, value ==> القيمة الحالية
           return acc + value;
         })
       );
 
       count5.subscribe(console.log) // 0 1 3 6
-     // reduce
+
+    /*
+    reduce ( mathmatical operator )
+    final value بتطلع ال  observable لو عايزة اجمع داتا  موجودة جو
+    يعنى بيجمعهم كلهم وبيطلع الفاليو النهائية
+    for...loop فنكشن بستخدمها فى التجميع كأنى عاملة  accumaltor Function بيستخدم
+    initial value اللى هى seat اسمها optional وحاجة
+    */
       const count1 = interval$.pipe(
         reduce((acc: number, value: number) => {
-          /*
-           وليكن 5 initial value فى حالة انى  حاطة
-         acc is 5 value is 1
-        acc is 6 value is 2
-        acc is 8  value is 3
-        acc is 11 value is 4
-          */
+          // acc ==> المتغير اللى بجمع فية, value ==> القيمة الحالية
           console.log(`acc is ${acc} - value is ${value}`);
           return acc + value;
         }, 5)
-      );
+      )
       count1.subscribe(console.log) // 11
-      // mergeScan ==> observable داتا اللى هترجع هترجع ك
+
+      /*
+      mergeScan ==>
+      observable بس الداتا اللى راجعة بتكون scan نفس ال
+      */
       const count2 = interval$.pipe(
         mergeScan((acc: number, value: number) => {
           console.log(`acc is ${acc} - value is ${value}`);
           return of(acc + value);
         }, 5)
       )
-      count2.subscribe(console.log)
+      count2.subscribe(console.log) // 5 6 8 11
       /*
       pairwise
        observable على  connect بتعمل
-       previousState,currentState لل  push وبيعمل
-     تقارن الستات ببعض مثلا الاوبجكيت اتغير عايز القديم منة او الجديد
-        __________________________
-      startWith()
-  علية انة يبدء بالقيمة دى connect اللى بعمل  observable لل force بعمل
-       BehaviourSubject لل initial emit لو عايزة استفيد من ال
+       previousState , currentState لل push وبيعمل
+       تقارن الستات ببعض مثلا الاوبجكيت اتغير عايز القديم منة او الجديد
       */
-      this.nameSubject
-      .pipe(pairwise())
+      this.nameSubject.pipe(pairwise())
       .subscribe(([previousState, currentState]: Array<string>) => {
         /*
-        prev state is null
-        curr state is القيمة اللى هيدخلها فى الانبت
+          prev state is null , curr state is القيمة اللى هيدخلها فى الانبت
         */
         console.log(`prev state ${previousState} curr state is ${currentState}`);
       })
 
+      /*
+       startWith()
+       علية انة يبدء بالقيمة دى connect اللى بعمل  observable لل force بعمل
+       BehaviourSubject لل initial emit لو عايزة استفيد من ال
+      */
       this.nameSubject
       .pipe(startWith(null), pairwise()) // startWith(null) ==> null عشان اخلية يبدء ب
       .subscribe(([previousState, currentState]: Array<string>) => {
@@ -699,15 +689,28 @@ clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل
       const users$ = ajax.getJSON('https://jsonplaceholder.typicode.com/users');
       // عشان الاراى اللى موجودة اشيل الاقواس منها from استخدم
       users$.subscribe((userData: Array<any>) => this.filterData(from(userData)));
-    /*
+  /*
     window
     وفية شوية داتا  window كل واحد فيهم اسمة  observables ل  source observable بتقسم ال
-    window open ==>
-    يعنى الصندوق مفتوح اقدر اخد منة داتا
-    window live ==>
-    الصندوق مفتوح لكن مش معنى كدا انى اقدر اخد منة داتا ممكن اخد داتا منة وممكن لا
-    window close ==> يعنى صندوق اتقفل مقدرش اخد منة داتا
-    */
+    window عن window بيفصل observable اللى هو window boundraies بتاخد
+   mergeAll فلازم اعمل  observables عبارة عن window ال
+
+    ______________
+   windowTime(time) ==> window live
+   بتاخد وقت يعنى الوقت اللى اقدر اخد منها داتا
+   window open time اللى خو ال optional parameter وبتاخد
+   window open ==> يعنى الصندوق مفتوح اقدر اخد منة داتا
+   windowTime(1000,4000) ==> بيعدى 4 ثوانى وبعد كدة يستقبل لمدة ثانية
+اللى طالعةevents ال maximum اللى هو max window size كمان اللى هو ال optional parameter وبتاخد
+window live==> الصندوق مفتوح لكن مش معنى كدا انى اقدر اخد منة داتا ممكن اخد داتا منة وممكن لا
+______________
+window close ==> يعنى صندوق اتقفل مقدرش اخد منة داتا
+___________
+windowCount(number) ==> window size
+_________
+windowToggle ==>
+اول واحد الوندوا هتفتح امتى وتانى الوندوا هتقفل امتى وتانى برمتر بيستخدم الداتا اللى راجعة من اول برمترparameter دى امتى يعنى بتاخد اتنان  window تستقبل داتا امتى و اقفل ال  window يعنى افتح ال
+*/
    interval(1000)
       .pipe(take(9))
       .subscribe(value=>console.log('in timeline',value))
@@ -716,40 +719,39 @@ clicks11$.pipe(withLatestFrom(data11$)).subscribe(console.log) //لما يعمل
       .pipe(
         // window كل 3 ثوانى البيانات اللى اتعرضت فيها كدا
         // window(interval(3000).pipe(take(3))),
-        // windowTime(1000), // يعنى الوقت اللى اقدر اخد منة داتا لمدة ثانية اقدر اخد منة داتا window live دا ال
+        // windowTime(1000),
         // windowTime(1000,4000), // يعنى الوندوا مفتوحة  اربع ثوانى بس اقدر استغل منها اول ثانية بسwindow open دا ال creation interval ودا optional دا paramter تانى
         // windowTime(1000,4000,2), //اللى طالعة max event يعنى  max window size ودا optional parameter  تالت
         // windowCount(2), // يعنى عند 2 كلك يفتح وندوا جديدة  window size
-        // windowCount(2,4), // ل 4 كلك يعنى عند الكلك 4 هيفتح وندوا جديدة skip هعمل parameter تانى
-        // windowToggle( //اول واحد الوندوا هتفتح امتى وتانى الوندوا هتقفل امتى وتانى برمتر بيستخدم الداتا اللى راجعة من اول برمترparameter دى امتى يعنى بتاخد اتنان  window تستقبل داتا امتى و اقفل ال  window يعنى افتح ال
+        // windowCount(2,4), //ل 4 كلك يعنى هعمل اتنان كلك وبعد الكلك 4 هيفتح وندوا جديدة skip هعمل parameter تانى
+        // windowToggle(
         //   interval(1000).pipe(tap(x => console.log('x is ', x))), // 0 1 2
         //   i => (i === 3 ? interval(1000) : EMPTY)
         // ),
-        windowWhen(() => interval(1000)), // window شبة
-        // tap(_ => console.log('===========  New Window  ===========')), // Window عن Window عشان يفصل
+        windowWhen(() => interval(1000)), //pipe بس من غير  window شبة
+        // tap(_ => console.log('==  New Window  ====')), // Window عن Window عشان يفصل
         take(3),
         mergeAll()
       )
       .subscribe(x => console.log('clicked', x))
-/*
-count()
- اد اية next بتاعى عمل  observable بتعد معايا ال
+ /*
+  count() ==> اد اية next بتاعى عمل observable بتعد معايا ال
 */
 fromEvent(document, 'click')
       .pipe(
         takeUntil(interval(3000)),
          //تبدء تعد وبعد 3 ثوانى يطلع عمل كلك كام مرة count لمدة 3 ثوانى اعمل كلك قبل ما buffer عمل
         count((ev: MouseEvent) =>(ev.target as HTMLElement).innerText === 'click me')
-        ).subscribe(console.log)
+      ).subscribe(console.log)
 
   /*
-  skip
- لاية cancel بيستقبل داتا بيحدد يستقبل اية ويعمل observable لو عندى
-  skipLast
+ - skip
+  لاية cancel بيستقبل داتا بيحدد يستقبل اية ويعمل observable لو عندى
+ - skipLast
   من الاخر skip هيعمل
-  skipUntil
+ - skipUntil
   يشتغل observable بتفضل تعمل اسكب لحد ما ال
-  skipWhile
+ - skipWhile
   على اساسة تشتغل condition بتاخد
   */
 
@@ -790,13 +792,14 @@ fromEvent(document, 'click')
   )
     .pipe(distinctUntilKeyChanged('name'))
     .subscribe(console.log)// x y x z ==> احسن بيرقب الكى بيحط الكى فى اول برمتر وتانى برمتر وتالت برمتر الحاجتين اللى عايز يقارنهم syntax بس ب distinctUntilChanged بيحقق نفس ال
-  /*
+/*
   elementAt
-   observable للايلمينت واحد من select لو انا عارفة ترتيب الداتا جو  اوبزرفابل عشان اقدر اعمل
-
+   بتاع الأيلمنت index بتاخد ال
+   observable للايلمينت واحد من select لو انا عارفة ترتيب الداتا جو اوبزرفابل عشان اقدر اعمل
+  ________
   ignoreElements
   امتى complete للايرور امتى او throw مش مهم الداتا اللى جواة لكن مهم يعمل observable لو عندى
- */
+*/
    // elementAt
      of(1, 2, 3,4)
       .pipe(elementAt(3)) //
@@ -912,20 +915,20 @@ fromEvent(document, 'click')
       /*
       timeInterval - timeout - timeoutWith - timestamp
 
-       timeInterval ==>
+      timeInterval ==>
        اللى قبلها emition وال emition اهم حاجة او الحاجة اللى بتحققها التايم بتاع اخر
 
-       timeout ==>
+      timeout ==>
       unsubscribe بيتعملة observable بيقف وال stream اللى خارجة لو محصلتش خلال فترة زمنية معنيةاو محصلتش خلال تاريخ معين ال emition بتقيس المسافة بين ال
 
       timeoutWith ==>
        تانى observable فى الوقت دة اعمل صب اسكريب على fail حصلة observable لو ال
 
-       timestamp ==>
+      timestamp ==>
        الاكشن اللى انت عملتة حصل امتى
        */
 
-      const clicks9$ = fromEvent(document, 'click');
+    const clicks9$ = fromEvent(document, 'click');
     // timeInterval
     clicks9$.pipe(timeInterval()).subscribe(console.log);
 
@@ -994,21 +997,21 @@ fromEvent(document, 'click')
       .subscribe(console.log)
 
 
-   /*
-   Hot Observables
+/*
+Hot Observables
 مش لازم صب اسكريب الداتا كدة كدة هيتعامل معاها يعنى هو بيستقبل داتا بغض نظر هتعمل صب اسكريب امتى
 subject بتوعوا مثال ال subscriber مع كل  instance ل share بيعمل
 هناك احنا بنعمل صب اسكريب بس عشان استقبل الداتا next مش لازم اعمل صب اسكريب علية هو كدة كدة اقدر اعمل subject يعنى فى ال
 subject اللى هتيجى بعد كدة لكن كدة كدة بيستقبل داتا والداتا مش طالعة من جو ال
 وكلهم هيسمعوا نفس الداتا subject من instance وممكن اعمل كذا
 _____________________
-  Cold Observables
+Cold Observables
    لازم اعمل صب اسكريب عشان ابعت الركوست http عشان اجيب الداتا والداتا بتطلع من اوبزرفابل زى ال  subscribe لازم
  observable  والداتا طالعة من ال
  لتنان اكشن هحتاج اعمل fromEvent واحد يعنى مثلا لو حبيت اعمل  instance ل share  وبيعمل
    على باتون مثلا fromEvent و document على fromEvent
 ____________________
-   warm Observables
+warm Observables
   Hot Observables وال Cold Observables واخد حتة من ال
  واخد انة بيعمل شير لنفس الانستنس Hot Observables من ال
    واخد انة مش بيتعامل مع اى داتا غير لما يعمل صب اسكريب يعنى لازم يعمل صب اسكريب عشان الداتا ترجع  Cold Observables من ال
@@ -1059,6 +1062,7 @@ ____________________
       })
     },5000) // هيستقبل اخر داتا موجودة عندى لان بعد خمس ثوانى هيكون خلص publishLast() دا عشان
   } // end ngOnInit
+
   filterData(userData$: Observable<any>) {
     const [filtered$, nonFiltered$] = partition(userData$,(user: any) => {
       return user.id % 2 === 0

@@ -15,7 +15,8 @@
   بنستخدم النوع دة لو هنعمل فورم معقدة وفيها
   validation
   بتبنى جوة الكلاس والمودل بتاعها بيبقى لية استركشر معين
-  والvalidation
+  وال
+  validation
   بتبقى عبارة عن فنكشن
   Reactive forms are more scalable, reusable, and testable.
 -->
@@ -24,8 +25,7 @@
 <!-- template driven form -->
 <h5>template-driven-form</h5>
 <app-template-driven-form></app-template-driven-form>
-<input type="text" [(ngModel)]='name'>
-{{name}}
+<input type="text" [(ngModel)]='name'> {{name}}
 
 <hr>
 <!-- reactive form -->
@@ -33,14 +33,18 @@
 
 <h5>formGroup</h5>
 <form [formGroup]="protofileForm" (ngSubmit)="onsubmit()">
- fname: <input type="text" formControlName='fname'>
- lname: <input type="text" formControlName="lname">
- <div formGroupName='address'>
-  dob: <input type="text" formControlName='dob'>
-  st: <input type="text" formControlName='st'>
-</div>
- <button type="submit">send</button>
- <button type="button" (click)="updateValue()">update value</button>
+    fname: <input type="text" formControlName='fname'>
+    <span *ngIf="protofileForm.controls.fname.invalid && protofileForm.controls.fname.touched && protofileForm.controls.fname.dirty">
+    <span *ngIf="protofileForm.controls.fname.errors.required">required</span>
+    <span *ngIf="protofileForm.controls.fname.errors.email">email</span>
+
+    </span>
+    lname: <input type="text" formControlName="lname">
+    <div formGroupName='address'>
+        dob: <input type="text" formControlName='dob'> st: <input type="text" formControlName='st'>
+    </div>
+    <button type="submit">send</button>
+    <button type="button" (click)="updateValue()">update value</button>
 </form>
 
 
@@ -49,24 +53,23 @@
 
 <h5>formBuilder</h5>
 <form [formGroup]="buildForm" (ngSubmit)="submit()">
-  fname:<input type="text" formControlName="fname"><br>
+    fname:<input type="text" formControlName="fname"><br>
     <!--
     dirty  يعنى كتبت فية او اتعاملت معاة
     pristine ===>عكس dirty
   -->
-  <span *ngIf="fname.invalid && fname.touched && fname.dirty">fname is invalid</span>
-  lname:<input type="text" formControlName="lname">
-  email:<input type="text" formControlName="email">
-  <span *ngIf="email.invalid && email.touched && email .dirty">
+    <span *ngIf="fname.invalid && fname.touched && fname.dirty">
+      fname is invalid</span> lname:
+    <input type="text" formControlName="lname"> email:
+    <input type="text" formControlName="email">
+    <span *ngIf="email.invalid && email.touched && email .dirty">
    <span *ngIf="email.errors.email">wrong email</span>
-   <span *ngIf="email.errors.pattern">wrong pattern</span>
-  </span>
-  <div formGroupName="address">
-   dob: <input type="text" formControlName="dob">
-   st: <input type="text" formControlName="st">
-  </div>
-  <button type="submit" [disabled]="buildForm.invalid">send</button>
-  form status : {{buildForm.status}}
+    <span *ngIf="email.errors.pattern">wrong pattern</span>
+    </span>
+    <div formGroupName="address">
+        dob: <input type="text" formControlName="dob"> st: <input type="text" formControlName="st">
+    </div>
+    <button type="submit" [disabled]="buildForm.invalid">send</button> form status : {{buildForm.status}}
 </form>
 
 
@@ -75,10 +78,10 @@
 
 <h5>another style</h5>
 <form [formGroup]="myform">
-  <!-- fname.pending 'طول ما ى عملية شغالة دا شغالة مش بكتب حاجة يقف-->
-  <!-- <div class="form-control" [ngClass]="{form-control--loading:fname.pending}"></div> -->
-  fname:<input type="text" formControlName="fname"><br>
-  <span *ngIf="fname.invalid && fname.touched && fname.dirty">
+    <!-- fname.pending 'طول ما ى عملية شغالة دا شغالة مش بكتب حاجة يقف-->
+    <!-- <div class="form-control" [ngClass]="{form-control--loading:fname.pending}"></div> -->
+    fname:<input type="text" formControlName="fname"><br>
+    <span *ngIf="fname.invalid && fname.touched && fname.dirty">
     fname is invalid
   <span *ngIf="fname.errors.invalidName">
     <!--
@@ -87,32 +90,26 @@
     -->
     name can't include a number
   </span>
-  </span>
-  lname:<input type="text" formControlName="lname"><br>
-  {{lname.errors}}
-  <ng-container *ngIf="lname.dirty">
-    <span *ngIf="lname.hasError('required')">this field is required</span>
-    <span *ngIf="lname.hasError('userNameExist')">userNameExist</span>
-    <!-- lname.pending خلص العمليات اللى ورا الكواليس-->
-    <span *ngIf="lname.valid && !lname.pending">nice user name</span>
+    </span>
+    lname:<input type="text" formControlName="lname"><br> {{lname.errors}}
+    <ng-container *ngIf="lname.dirty">
+        <span *ngIf="lname.hasError('required')">this field is required</span>
+        <span *ngIf="lname.hasError('userNameExist')">userNameExist</span>
+        <!-- lname.pending خلص العمليات اللى ورا الكواليس-->
+        <span *ngIf="lname.valid && !lname.pending">nice user name</span>
 
-  </ng-container><br>
-  <div formGroupName="pass">
-  password:<input type="text" formControlName="password"><br>
-  <!-- {{password.Errors | json}} -->
-  confirmPassword:<input type="text" formControlName="confirmPassword">
-  <!-- {{confirmPassword.Errors | json}} -->
-  <ng-container *ngIf="confirmPassword.dirty">
-    <span *ngIf="confirmPassword.hasError('wrongPassword')">wrongPassword</span>
- </ng-container>
-</div>
+    </ng-container><br>
+    <div formGroupName="pass">
+        password:<input type="text" formControlName="password"><br>
+        <!-- {{password.Errors | json}} -->
+        confirmPassword:<input type="text" formControlName="confirmPassword">
+        <!-- {{confirmPassword.Errors | json}} -->
+        <ng-container *ngIf="confirmPassword.dirty">
+            <span *ngIf="confirmPassword.hasError('wrongPassword')">wrongPassword</span>
+        </ng-container>
+    </div>
+
 </form>
 {{myform.errors}}
 <hr>
 <app-dynamic-form></app-dynamic-form>
-
-
-
-
-
-

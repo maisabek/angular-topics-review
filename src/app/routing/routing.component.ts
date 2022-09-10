@@ -35,8 +35,8 @@ export class RoutingComponent implements OnInit {
     __________
     The router.events
      is an Observable that gets triggered when the route changes. We receive NavigationEvent as
-     the parameter in the callback. We check the NavigationEvent instance to check the Type of event
-     fired
+     the parameter in the callback. We check the NavigationEvent instance to check the Type of
+     event fired
     */
   this.router.events.subscribe(
     (event: NavigationEvent) => {
@@ -44,16 +44,14 @@ export class RoutingComponent implements OnInit {
         console.log(event);
       }
     })
-// Or you can make use of the rxjs filter operator to filter out the required events
+    // Or you can make use of the rxjs filter operator to filter out the required events
     this.router.events
     .pipe(
       filter( event =>event instanceof NavigationStart)
     )
-    .subscribe(
-      (event: NavigationEvent) => {
+    .subscribe((event: NavigationEvent) => {
         console.log(event);
-    }
-  )
+    })
    }
    ngOnInit() {
     setTimeout(() => {

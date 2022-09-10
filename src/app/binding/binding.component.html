@@ -1,9 +1,3 @@
-
-
-<!--
-    <comp-with-host-binding dirWithHostBinding></comp-with-host-binding>
- -->
-
 <p>binding</p>
 <!--
 binding
@@ -21,7 +15,7 @@ one-way data binding technique which is used to output the data from a
 TypeScript code to HTML template (view)
 Interpolation is a special syntax that Angular converts into a property binding
 ___________________
- Interpolation and property binding can set only properties, not attributes
+Interpolation and property binding can set only properties, not attributes
 
  only work in a normal template not within another expression of that template
  امتى استخدمها
@@ -34,10 +28,9 @@ ___________________
 <h2>{{siteurl}}</h2>
 <input type="text" disabled="{{true}}"><br>
 <input type="text" disabled="{{false}}"><br>
-<p>{{allow}}</p>
+<p> {{ allow }} </p>
 
 <hr>
-
 <!--
 property binding
 One-Way from model to view
@@ -51,7 +44,6 @@ helps you set values for properties of HTML elements or directives.
 امتى استخدمها
 if you want to change some property be that of a html element or as you will
 later learn of a directive or components
-
 -->
 <h5>property binding</h5>
 <img [src]="imgUrl">
@@ -61,11 +53,9 @@ later learn of a directive or components
 <hr>
 
 <!--
-    property binding  is not the same as a directive
-    it's totally different
+    property binding  is not the same as a directive it's totally different
     we are binding to a property of the directive
--->
-<!--
+______________________
     binding class
     allow us to add or remove css class
 -->
@@ -73,11 +63,12 @@ later learn of a directive or components
 <h5 [class]="successVarable">[class]="successVariable"</h5>
 <h5 [class]="messageclass">success:flag,successStyle:!flag</h5>
 <h5 class="successStyle" [class]="successVaraible">binding class</h5>
-<h5  [class.successStyle]="flag" dirWithClassBinding>binding class (flag)</h5>
-<h5  [ngClass]="messageclass">ng class</h5>
+<h5 [class.successStyle]="flag" dirWithClassBinding>binding class (flag)</h5>
+<h5 [ngClass]="messageclass">ng class</h5>
 <h5 [ngClass]="{success:flag,successStyle:!flag}">ng class</h5>
 <h5 [ngClass]="{'success':num == 4}">ng class 2</h5>
 <hr>
+
 <!--
 Binding to an attribute
 Attribute binding in Angular helps you set values for attributes
@@ -90,7 +81,9 @@ classes or styles simultaneously
 </p>
 <button [attr.aria-label]="actionName">{{actionName}} with Aria</button>
 <br>
-<tr><td [attr.colspan]="1 + 1">One-Two</td></tr>
+<tr>
+    <td [attr.colspan]="1 + 1">One-Two</td>
+</tr>
 
 <hr>
 <!--
@@ -127,15 +120,14 @@ onClick() ==> Template statement
 -->
 <input type="text" (input)="onClick()">
 
-<button (click)="onClick()" >Event binding</button>
+<button (click)="onClick()">Event binding</button>
 <!--
     $event super important is kind of a reserved variable name
     will simply be the data emitted with that event
 -->
 <button (click)="greeting($event)">Event binding</button>
 <button (click)="greet = 'welcome'">Event binding</button>{{greet}}
-<button (myClick)="clickMessage=$event" clickable>click with myClick</button>
-{{clickMessage}}
+<button (myClick)="clickMessage=$event" clickable>click with myClick</button> {{clickMessage}}
 <!--
      #myinput
      ريفرنس بيشاور على الانبت دة وممكن بدل الهاش اكتب
@@ -156,13 +148,12 @@ onClick() ==> Template statement
 -->
 <h5>two way data binding</h5>
 <div class="py-4">
-    <input [(ngModel)]='fname' class="form-control"/>
+    <input [(ngModel)]='fname' class="form-control" />
     <h2>{{fname}}</h2>
 </div>
 <hr>
 <!-- two way data binding -->
-<input type="text" (input)="onUpdateServerName($event)">
-{{serverName}}
+<input type="text" (input)="onUpdateServerName($event)"> {{serverName}}
 
 <!--
 ngNonBindable
@@ -171,8 +162,8 @@ ngNonBindable
 -->
 <h5 ngNonBindable>fname (ngNonBindable) : {{fname}}</h5>
 
- <!-- لو عايزة انادى على الكمبونت -->
- <ng-container *ngComponentOutlet="dummy"></ng-container>
+<!-- لو عايزة انادى على الكمبونت -->
+<ng-container *ngComponentOutlet="dummy"></ng-container>
 
 
 <!--
@@ -186,3 +177,6 @@ npm install --save @angular/elements
 
 
 <div [innerHTML]="content"></div>
+<!--
+    <comp-with-host-binding dirWithHostBinding></comp-with-host-binding>
+ -->

@@ -1,27 +1,27 @@
 <!-- #myinput  ==>  ريفرنس بيشاور على الانبت دةوممكن بدل الهاش اكتب
-                ref-myinput 
-                ولازم احط الاكشن المناسب عشان يظهر القيمة
-            
-            -->
-<input #myinput type="text" placeholder="enter phone">
+                ref-myinput
+      ولازم احط الاكشن المناسب عشان يظهر القيمة
+-->
+<input #myinput type="text" placeholder="Enter Phone">
 <button (click)="logMessage(myinput.value)">event binding</button><br>
 
-<!-- 
+<!--
     عشان اخد القيمة دى فى التايب اسكربت من غير ما اعمل كلك عن طريق
-@ViewChild('myinput') input 
+@ViewChild('myinput') input
 -->
 <input type="text" #phone>
 <hr>
-<!-- 
-    <ng-container></ng-container> 
+<!--
+    <ng-container></ng-container>
     div dummy
-    مؤقتا بتحقق الحاجة اللى عايزها وتختفى 
+    مؤقتا بتحقق الحاجة اللى عايزها وتختفى
     عشان مضفش ايلمينت من ال اتش تى ام ال
     _____________________
-    مينفعش استخدم 
+    مينفعش استخدم
     *ngIf,*ngFor
     على سطر واحد
 -->
+
 <ng-container *ngFor="let child of [1,2,3,4,5];let i = index">
-<app-side #childRef></app-side>
+    <app-side #childRef></app-side>
 </ng-container>

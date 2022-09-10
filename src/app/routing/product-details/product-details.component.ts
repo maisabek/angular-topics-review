@@ -82,7 +82,7 @@ export class ProductDetailsComponent implements OnInit {
   getPageId() {
     /*
     params ==> is the observable,it's that stream of data that gives us new values
-     هنا لأن الأنجولار هى اللى بتعملةunsubscribe مش محتاجة اعمل
+     هنا لأن الأنجولار هى اللى بتعملة unsubscribe مش محتاجة اعمل
     */
     this.activateRoute.params.subscribe((params) => {
       console.log(params);

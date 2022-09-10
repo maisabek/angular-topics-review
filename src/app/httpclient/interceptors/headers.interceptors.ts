@@ -23,7 +23,7 @@ import { Observable } from 'rxjs';
   httpClientBackendHandlerبتاعتى تخلص ولما يخلص اخر حاجة هتسلم ل
    يعنى دة اخر هاندلر بيعدى علية الركوست وهو اللى بيبعت الركوست للسرفير وبيستقبل الرسبيونس
  */
-     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+     intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
         /*
         clone() ==>
           url يعنى اخد نسخة عشان ال

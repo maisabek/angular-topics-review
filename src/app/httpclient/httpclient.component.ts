@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import {ApiService} from './http/api.service';
-import {HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
 import {interval, Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-httpclient',
@@ -18,7 +17,6 @@ export class HttpclientComponent implements OnInit {
   }
   constructor(private ApiService: ApiService) {}
   ngOnInit(){
-
    /*
    push VS pull Protocols
    data preducer ==>
@@ -45,11 +43,13 @@ export class HttpclientComponent implements OnInit {
      })
 
      auth$.subscribe(message => {
-       console.log("observable 1",message) // هترجع اللينك مش الداتا اللى جو اللينك observable 1 in observable
+       console.log("observable 1",message)
+       // هترجع اللينك مش الداتا اللى جو اللينك observable 1 in observable
      })
 
      auth$.subscribe(message => {
-      console.log("observable 2",message) //  هترجع اللينك مش الداتا اللى جو اللينك observable 2 in observable
+      console.log("observable 2",message)
+      //  هترجع اللينك مش الداتا اللى جو اللينك observable 2 in observable
       setTimeout(()=>{
         console.log('observable 3')
       },3000)
@@ -99,7 +99,7 @@ export class HttpclientComponent implements OnInit {
 
     The RxJS Observable interface provides the toPromise() method
     that can be used to get a promise from the Observable.
-    
+
     RxJS provides the toPromise() operator which converts an Observable to a promise
     so you can
     work with the HttpClient methods using promises instead of Observables. We have previously
@@ -151,7 +151,7 @@ export class HttpclientComponent implements OnInit {
     // this.ApiService.doGet().toPromise().then((res)=>{
     //   console.log('res',res)
     // })
-    
+
     // this.ApiService.doGet().subscribe((event: HttpEvent<any>) => {
     //     console.log('event is', event)
     //     // progress event <== عشان يعمل

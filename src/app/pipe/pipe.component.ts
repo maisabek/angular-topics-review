@@ -53,17 +53,15 @@ export class PipeComponent implements OnInit, OnDestroy {
   observableAsync: Observable<any>;
   ngOnInit() {}
   getPromise() {
-
-    console.log( this.datePipe.transform(this.date,'dd-mm-yyy'))
-
-
+    console.log(this.datePipe.transform(this.date,'dd-mm-yyy'))
     return new Promise<string>((resolve, reject) => {
         setTimeout(() => {
           resolve('promise complete');
         });
     });
   }
-  getObservable(){
+
+  getObservable() {
    return ajax.getJSON('https://jsonplaceholder.typicode.com/todos/1');
   }
   getData() {

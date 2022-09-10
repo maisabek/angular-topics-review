@@ -18,10 +18,9 @@ ____________________________
 الفاليدشن بتكتب هنا فى الاتش تى ام ال
 -->
 
-<form #buildForm="ngForm"  (ngSubmit)="onSubmit(buildForm.value)">
-fname:<input type="text" name="fname" ngModel required><br>
-lname:<input type="text" name="lname-" ngModel #count="ngModel"><br>
-{{count.value}}
-{{buildForm.value | json}}
-<button type="submit">submit</button>
+<form #buildForm="ngForm" (ngSubmit)="onSubmit(buildForm.value)">
+    fname:<input type="text" name="fname" ngModel required><br> lname:
+    <input type="text" name="lname-" ngModel #count="ngModel">
+    <br> {{count.value}} {{buildForm.value | json}}
+    <button type="submit">submit</button>
 </form>

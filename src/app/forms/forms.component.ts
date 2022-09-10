@@ -55,7 +55,7 @@ export class FormsComponent implements OnInit {
   control = new FormControl();
   // FormGroup
   protofileForm = new FormGroup({
-    fname: new FormControl(),
+    fname: new FormControl('',[Validators.required,Validators.email]),
     lname: new FormControl(),
     address: new FormGroup({
       dob: new FormControl(),
@@ -64,14 +64,6 @@ export class FormsComponent implements OnInit {
     })
   });
 
-  // طريقة تانية لكتابة الكود وهنا مش محتاجة اعمل الفنكشن
-  // get
-  // عشان ال فاليدشن
-  myform: FormGroup;
-  fname: FormControl;
-  lname: FormControl;
-  password: FormControl;
-  confirmPassword: FormControl;
   ngOnInit() {
     console.log(`form ${this.control}`);
     // valueChanges من نوع اوبزرفبول وبتراقب التغير اللى هيحصل
@@ -103,6 +95,15 @@ export class FormsComponent implements OnInit {
   //  this.email?.disable()
     // لما يعمل صب ميت يعمل ديس ابل للايميل
   }
+
+  // طريقة تانية لكتابة الكود وهنا مش محتاجة اعمل الفنكشن
+  // get
+  // عشان ال فاليدشن
+  myform: FormGroup;
+  fname: FormControl;
+  lname: FormControl;
+  password: FormControl;
+  confirmPassword: FormControl;
   initformControls() {
      this.fname = new FormControl('', [Validators.required, validateName, validate(/[0-9]/g)]);
      this.lname = new FormControl('', {validators: [],
@@ -119,8 +120,7 @@ export class FormsComponent implements OnInit {
       pass: new FormGroup({
       password: this.password,
       confirmPassword: this.confirmPassword
-      },
-       validatePass('password', 'confirmPassword'))
+      },validatePass('password', 'confirmPassword'))
     })
   }
 

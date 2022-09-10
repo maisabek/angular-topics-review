@@ -1,12 +1,12 @@
 /*
 directive
-هو خاصية تضاف على العنصر فى الصفحة , تقوم بالتحكم فى طريقة عمله وعرضه فى الصفحة 
- used to manipulate the DOM . you can change the appearance, behavior or 
+هو خاصية تضاف على العنصر فى الصفحة , تقوم بالتحكم فى طريقة عمله وعرضه فى الصفحة
+ used to manipulate the DOM . you can change the appearance, behavior or
  a layout of a DOM element. It also helps you to extend HTML.
  -------
  directive are instructions in the dom
  ____________
- Angular offers two kinds of built-in directives: 
+ Angular offers two kinds of built-in directives:
  attribute directives and structural directives.
  ________________________
 directive لية 3 انواع
@@ -16,7 +16,7 @@ of our component somewhere in our template at this point we're instructing angul
 to add the content of our component template and the business logic in our typescript
 code in this place where we use the selector
 
-Component directives are used in main class. They contain the detail of how the 
+Component directives are used in main class. They contain the detail of how the
 component should be processed, instantiated and used at runtime.
  دى ديراكتف بتمبلت يعنى ديراكتف ذيادة علية فيو
  اى حاجة اقدر اعملها فى الديكترف اقدر اعملها
@@ -26,10 +26,10 @@ ________________________
 2- structrcul directive
 start with  * sign
 بتغير فى الدوم بتعمل انزرت فى الدوم وريموف من دوم زى
-*ngFor *ngIf  
+*ngFor *ngIf
 ________________________
 3-attribute directive
-؟؟ attribute directive لية بيسمى 
+؟؟ attribute directive لية بيسمى
 because they really just look like normal html attributes without a star basically
 __________
 used to change the look (Change the appearance\behavior of an element)
@@ -44,17 +44,17 @@ import {Directive, ElementRef, Renderer, HostListener, Input, HostBinding} from 
     /*
     technically the selector of a directive can be configured just like the selector
     of a component so you could alse use css class or the elements style but again
-   typically use the attribute style
+    typically use the attribute style
     _________
     [] لية حاطط الاقواس دى
-  css match rules بيستخدم  selector لان
+    css match rules بيستخدم selector لان
     */
     selector: '[appDirective]'
 })
 export class directive{
 // Attribute Directive
 constructor(private elementRef: ElementRef, private render: Renderer) {
-    elementRef.nativeElement.style.backgroundColor = 'green';
+elementRef.nativeElement.style.backgroundColor = 'green';
 //دى فرقت عن اللى فوق ان لو حبيت ارن على حاجة غير البروزر يعنى بلات فورم تانية زى الاندرويد رندر دى هتصرف وتنادى على الفنكشن المناسبة
 render.setElementStyle(elementRef.nativeElement, 'backgroundColor', 'yellow');
 }
@@ -81,6 +81,5 @@ render.setElementStyle(elementRef.nativeElement, 'backgroundColor', 'yellow');
 highLight(color: string) {
 this.render.setElementStyle(this.elementRef.nativeElement, 'backgroundColor', color);
 }
-
 
 }

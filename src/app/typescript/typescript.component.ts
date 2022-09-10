@@ -26,9 +26,9 @@ var x=10
 x="aaa"
 يبقى كدة غير فى الداتا تايب بتاع المتغير
 لكن فى المقابل بتذود احتمالية ايرور كتير flexable دى بتخلى الجافا اسكربت سهلة و
- للفنكشن دى هقدر ابصيلها اى متغير من اى نوع داتا تايبcall يعنى زى لو عندى فنكشن وبديها متغير فى الجافا اسكربت لما اعمل
+للفنكشن دى هقدر ابصيلها اى متغير من اى نوع داتا تايب call يعنى زى لو عندى فنكشن وبديها متغير فى الجافا اسكربت لما اعمل
 اما فى التايب اسكربت لازم متغير من نفس نوع الداتا اللى مبصهلها
- feature و بعض ال subInterfaces و interfaces والتايب اسكربت زودت
+feature و بعض ال subInterfaces و interfaces والتايب اسكربت زودت
 يعنى التايب اسكربت عبارة عن  فرجن من الايكما اسكربت 6  زيادة عليها الفيتشر الجديدة
 
 TypesScript is known as Object oriented programming language
@@ -41,7 +41,7 @@ TypeScript has Interface but JavaScript does not have Interface.
 TypeScript has a feature known as Static typing but JavaScript does not have this feature.
 Static typing is allows for checking type correctness at compile time. This is not available in
 JavaScript.
-__________________________
+___________________
 typescript لية استخدم
 فالكود بيكون عشوائى فالصعب احدد الايرور واعمل اى تعديل عليةobject orianted programming لان الجافا اسكربت مش شغالة
 من الصعب انشاء مشروع كبير من خلال الجافا اسكربت وادخال تعديلات علية
@@ -54,14 +54,12 @@ ___________________
  ممكن استخدام مكتبات الجافا اسكربت مع لغة التايب اسكربت
 
  ____________________
- عيوب التايب اسكربت ؟
- TypeScript takes time to compile the code.
+عيوب التايب اسكربت ؟
+TypeScript takes time to compile the code.
 بتاخد وقت اطول فى الرن لان البروزر مش بيفهم تايب اسكربت فبيحولها لجافا اسكربت
 compile the code by cli
 */
-
 import { Component, OnInit } from '@angular/core';
-import { AppComponent, student } from '../app.component';
 @Component({
   selector: 'app-typescript',
   templateUrl: './typescript.component.html',
@@ -86,7 +84,6 @@ export class TypescriptComponent implements OnInit {
   if (this.y === operation.add) {console.log('add'); }
   if (this.y === operation.sub) {console.log('sub'); }
   if (this.y === operation.div) {console.log('div'); }
-
   /*________________________________________________________*/
  /*
   generic
@@ -133,7 +130,7 @@ constructor(x: N, y: K) {}
     name: 'hussein',
     age: 28
    };
-  /*________________________________________________________*/
+/*________________________________________________________*/
   /*
    The Function Constructor
    TypeScript also supports defining a function with
@@ -156,6 +153,7 @@ constructor(x: N, y: K) {}
     return sum
   }
   /*________________________________________________________*/
+
   /*
    let , var , const
 
@@ -201,7 +199,7 @@ constructor(x: N, y: K) {}
       username: 'alex',
       password: '12344'
     };
-    // username:fullName هيخزن   اليوزر نام فى المتغير فول نام
+    // username:fullName هيخزن اليوزر نام فى المتغير فول نام
     const {id, username: fullName, password} = info
     // دى بدل
     // const id = info.id;
@@ -302,13 +300,8 @@ constructor(x: N, y: K) {}
     console.log('exponent : ', this.exponent(7, 6));
     console.log('disp_details : ', this.disp_details(1, 'gg'));
     console.log('myFunction : ', this.myFunction(4, 3));
-
   }
-
-
-
 }
-
 
 /*
 لية عملوا الموديل؟؟
@@ -358,7 +351,7 @@ import * as all from './app.js';
 واما اجى انادى على الحاجات اللى جو المسار يبقى
 all.اسم الحاجة
 __________
- واحد بس default export لية module كل
+واحد بس default export لية module كل
 default export اعملها من غير الاقواس يعنى اسم الحاجة اللى مكتوب قبلها import ولما اجى اعملها
 من غير اقواس ومش شرط اكتب اسم الحاجة بالظبط
  import sayHello from './app'
@@ -451,7 +444,7 @@ public abstract void moveTo(String dis);
 body ملهاش abstract method ان ال
 والقاعدة التانية
 abstract class لازم تكون بداخل
-____________
+____
 فايدتها
 implementation بيخلى الكلاس اللى وارث منة هو اللى يعملها
 inheratence لازم لما اعمل
@@ -470,6 +463,43 @@ implements بنكتب interface ولما كلاس بيورث
 implementation
 للميثود دى
 abstract وبيختلف عن ال
+_____________________
+defference between interface and abstract class ?
+interface ==>
+1- members of interface are public
+2- interface implemented using keywords 'implements'
+3- interface can extend  another interface onley
+4- implementation ومينفعش يعملها abstract الميثود لازم تكون
+5- interface does't contain constructor
+6- variables static
+__
+abstract class ==>
+1- members of abstract class are public , private , protected
+2- abstract class extended using keywords 'extend'
+3- abstract class can extend  another class and implement multiple interfaces
+4- implementation يعنى يبقى فى مبثود اقدر اعملها  abstract  الميثود مش شرط تكون
+5- abstract class contain constructor
+6- variables static and non static
+_______________________________
+defference between class and struct ?
+struct ==>
+1- inheritance not supported
+2- no destructor
+3-  public بيكون default ال access modifer لو مفيش
+4- instance of structure is a structure variable
+5- new لما بعمل اوبجكيت مش بستخدم
+6- abstract مينفعش يكون
+7- have only parameterized constructor
+___
+class ==>
+1- inheritance supported from class and structure
+2-can have destructor
+3-  private بيكون default ال access modifer لو مفيش
+4- instance of class is an object
+5- new لما بعمل اوبجكيت بستخدم
+6- abstract ممكن يكون
+7- have all types of constructor
+
 */
 abstract class creadit3 {
 

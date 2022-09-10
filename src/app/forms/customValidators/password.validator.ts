@@ -21,4 +21,5 @@ export function validatePass(control1: string, control2: string): ValidatorFn {
       confirmPassword.setErrors({wrongPassword: true});
     }
     return null;
- }; }
+ };
+ }
