@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import {ServiceService} from '../../modules/services/service.service'
 @Component({
   /*
-  selector : 
+  selector :
   This property specifies the CSS Selector, where our template will be inserted into the HTML.
   The CSS Selector in our code is app-root
   */
@@ -19,8 +19,11 @@ import {ServiceService} from '../../modules/services/service.service'
   encapsulation: ViewEncapsulation.Emulated
   /*
   ViewEncapsulation.None ==> child وال parent على مستوى ال css global بيخلى ال
+  styles from the component propagate back to the main HTML and
+  therefore are visible to all components on the page.
   ___________
   ViewEncapsulation.Emulated بيشتغل بالاسكوب يعنى الديفلت
+  styles from the main HTML propagate to the component.
   ___________
   ViewEncapsulation.ShadowDom
   is a technology not supported by all browsers where
@@ -30,6 +33,8 @@ import {ServiceService} from '../../modules/services/service.service'
   and that is the default behavior of view encapsulation in angular
   _________
  ViewEncapsulation.Native
+ styles from the main HTML do not propagate to the component.
+ 
  ShadowDom استبدلت ب Native يعنى ال ShadowDom نفس ال
  This is called "ShadowDom" instead of "Native" now
  the functionality is the same though

@@ -11,7 +11,7 @@ html ,css ,javascript بيكون عبارة عن
 والداتا بتاعة الهوم بايج
 html ,css ,javascript
 والداتا بتاعة الرياضة جاين جداد  html ,css ,javascript  وجايلة
- reload فالمتصفح بيعمل
+reload فالمتصفح بيعمل
 بنفسة عشان  يعمل ريندر يعنى يشيل القديم ويعرض الداتا اللى جايلة جديدة
 بتاعة الموقع  useability دى بيقلل ال  reload فالمتصفح لما بيعمل
 فدى مشكلة بالنسبة لليوزر
@@ -75,6 +75,9 @@ angular.js ربع angular2 بتاع performance يعنى ال angular.js افض�
 5- Uses MVC architecture to build the applications (model view controller)
  اللى هو اللوجيك بيكون لوحدة controller ال
  بيكون لوحدة view ال
+6- Doesn’t support Dependency Injection
+7- @routeProvider is used to provide routing information
+8-Difficult to manage with an increase in source code size
 
 angular2:
 1- cross platform mobile application بتسمح انى اعمل ان
@@ -89,6 +92,10 @@ angular.js لل support وان جوجل مبقتش بتعمل
 The MVVM model supports two-way data binding between View and ViewModel.
 This allows the automatic propagation to change within ViewModel's state to the view.
 Typically, ViewModel uses the observer model to inform changes to the ViewModel model to model.
+[Angular uses different components and directives]
+5- support Dependency Injection
+6- @Route configuration is used to define routing information
+7- Better structured, easy to create and manage bigger applications
 
 --------------
 التحسينات اللى بتكون فى الانجولار من انجولار 2 الى انجولار 9
@@ -385,6 +392,11 @@ deploy قبل ما يترفع على السرفير اصلا ويتعملة buil
 JIT افضل من ال Aot فال
 debugging عشان ال Development فى ال JIT فبنشتغل
 production فى ال Aot ونشتغل
+1-Faster rendering
+2-Fewer asynchronous requests
+3-Smaller Angular framework download size
+4-Quick detection of template errors
+5-Better security
 _______________
 ng update @angular/cli@8 @angular/core@8
 ng update @angular/cli @angular/core
@@ -513,5 +525,100 @@ button is clicked, just changing its hidden attribute would be enough.
 _______________
 difference between opacity:0 & visibility:hidden  dispaly:none?
 
+______________
+What are decorators in Angular?
+Decorators are a design pattern or functions that define how Angular features work.
+They are used to make prior modifications to a class, service, or filter.
+Angular supports four types of decorators, they are:
+1-Class Decorators
+2-Property Decorators
+3-Method Decorators
+4-Parameter Decorators
+______________
+ What are the new updates with Angular10?
+1- Older versions of TypeScript not supported - Previous versions of Angular supported
+typescript 3.6, 3.7, and even 3.8. But with Angular 10, TypeScript bumped to
+TypeScript 3.9.
 
+2- Warnings about CommonJS imports - Logging of unknown property bindings or element
+names in templates is increased to the "error" level, which was previously a "warning"
+before.
+
+3- Optional strict setting
+Version 10 offers a stricter project setup when you create a new workspace with
+ng new command.
+ng new --strict
+
+NGCC Feature - Addition of NGCC features with a program based entry point finder.
+- Updated URL routing
+- Deprecated APIs - Angular 10 has several deprecated APIs.
+- Bug fixes - With this Angular 10 version, there have been a number of bug fixes, \
+important ones being the compiler avoiding undefined expressions and the core avoiding
+a migration error when a nonexistent symbol is imported.
+- New Default Browser Configuration - Browser configuration for new projects has been
+upgraded to outdo older and less used browsers.
+
+_______________
+What are Templates in Angular?
+Angular Templates are written with HTML that contains Angular-specific elements and
+attributes.
+In combination with the model and controller's information,
+these templates are further rendered to provide a dynamic view to the user
+
+______________
+What are Annotations in Angular?
+Annotations in Angular are used for creating an annotation array.
+They are the metadata set on the class that is used to reflect the Metadata library.
+____________
+ What are Components in Angular?
+ Components are the basic building blocks of the user interface in an Angular application.
+ Every component is associated with a template and is a subset of directives
+
+ __________
+ What is an ngModule?
+NgModules are containers that reserve a block of code to an application domain or
+a workflow.
+ @NgModule takes a metadata object that generally describes the way to compile the
+ template of a component and to generate an injector at runtime.In addition,
+
+ it identifies the module's components, directives, and pipes, making some
+ of them public, through the export property so that external components can use them.
+
+___________
+What are filters in Angular? Name a few of them.
+Filters are used to format an expression and present it to the user.
+They can be used in view templates, controllers, or services. Some inbuilt
+filters are as follows.
+
+date - Format a date to a specified format.
+filter - Select a subset of items from an array.
+Json - Format an object to a JSON string.
+limitTo -  Limits an array/string, into a specified number of elements/characters.
+lowercase - Format a string to lowercase
+
+_________
+What are controllers?
+AngularJS controllers control the data of AngularJS applications.
+They are regular JavaScript Objects.
+The ng-controller directive defines the application controller.
+_________
+url ==> uniform resource locator
+بيتكون من
+protocol://domain:port/path?query_string#fragment
+1- protocol ==> resource المناسب للوصول ل protocol يخبر المتصفح ال
+http , https, ftp, sockets زى ال
+؟؟ http , https الفرق بين ال
+http ==> غير امن
+https ==> امن
+ ssl / tls-https ==>  server وال client لتشفير البيانات التى يتم ارسالها بين ال
+________
+2- domain ==> server اسم ال
+_______
+3- port ==> server اللى بيستمع علية ال port ال
+______
+4- route/path ==> server على ال resource مسار ال
+______
+5-query_string ==>  المفصولة بعلامة  & يتم استخدامة لتمرير البيانات  لسرفيرvalue وال key مجموعة من ال
+________
+6- fragment ==>   resource يبدء ب # ويتم استخدامة لتحديد جزء معين من ال
 -->

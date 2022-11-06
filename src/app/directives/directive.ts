@@ -1,7 +1,9 @@
 /*
 directive
 هو خاصية تضاف على العنصر فى الصفحة , تقوم بالتحكم فى طريقة عمله وعرضه فى الصفحة
- used to manipulate the DOM . you can change the appearance, behavior or
+==> are attributes that allow the user to write new HTML syntax specific to their
+applications hey execute whenever the Angular compiler finds them in the DOM
+==> used to manipulate the DOM . you can change the appearance, behavior or
  a layout of a DOM element. It also helps you to extend HTML.
  -------
  directive are instructions in the dom

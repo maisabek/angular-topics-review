@@ -13,7 +13,7 @@ import { InputComponent } from '../input/input.component';
 /*
  node.js
  دى انفيرومنت معمولة للجافا اسكربت بتسمح للجافا اسكربت انها تشتغل باك اند
-  node.js ==> جوها الnpm
+  node.js ==> جوها ال npm
   ودى بتخلى الانجلر  تقدر تعمل انكلود لاى حااجة من برة
 ______________________________________
  rxjs
@@ -24,9 +24,9 @@ ______________________________________
  rxjs كلاس موجود جوة ال
 subscripe الكلاس دة موجودة جواة فنكشن اسمها
 http request الفنكشن دى وظيفتها انها تعمل ادراك لاى تغير او ابدات يحصل لل
- channelاو socket الفنكشن دى بتفتح
-  عشاان اى تغير يحصل يسمع عندى
-  */
+ channel او socket الفنكشن دى بتفتح
+ عشاان اى تغير يحصل يسمع عندى
+*/
 export class BindingComponent implements OnInit{
   content=null
   num:any=4
@@ -37,7 +37,7 @@ export class BindingComponent implements OnInit{
     //   //<p>paragraph</p>
     //   this.content=domSanitizer.bypassSecurityTrustHtml("<my-receive  message='Use Angular!'></receive>")
     // }, 3000);
-  
+
   }
   dummy=InputComponent
   fname: any;

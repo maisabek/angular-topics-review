@@ -6,40 +6,26 @@
 -->
 <p>pipe</p>
 users: {{users | json}}
-<br>
-uppercase: {{name | uppercase}}
-<br>
-titleCase: {{name | titlecase}}
-<br>
-slice: {{name|slice:2:4}}
-<br>
-number: {{5.678 | number:'1.2-3'}}
-<br>
-number: {{5.678 | number:'3.4-5'}}
-<br>
-percent: {{0.25 | percent}}
-<br>
-currency: {{0.25 | currency}}
-<br>
-currency GBP: {{0.25 | currency : 'GBP'}}
-<br>
-currency EUR: {{0.25 | currency : 'EUR'}}
-<br>
-date: {{date}}
+<br> uppercase: {{name | uppercase}}
+<br> titleCase: {{name | titlecase}}
+<br> slice: {{name|slice:2:4}}
+<br> number: {{5.678 | number:'1.2-3'}}
+<br> number: {{5.678 | number:'3.4-5'}}
+<br> percent: {{0.25 | percent}}
+<br> currency: {{0.25 | currency}}
+<br> currency GBP: {{0.25 | currency : 'GBP'}}
+<br> currency EUR: {{0.25 | currency : 'EUR'}}
+<br> date: {{date}}
 <br>
 <!-- 'ar-EG' ==> هيحول التاريخ للعربى -->
 date ar-EG: {{date | date:'ar-EG'}}
-<br>
-dateShort: {{date | date:'short'}}
+<br> dateShort: {{date | date:'short'}}
 <br>
 <!-- +2 ==> time zone -->
 dateShort: {{date | date:'short':'+2':'ar-EG'}}
-<br>
-dateMedium: {{date | date:'medium':'+2':'ar-EG'}}
-<br>
-dateLong: {{date | date:'long':'+2':'ar-EG'}}
-<br>
-dateFull: {{date | date:'full':'+2':'ar-EG'}}
+<br> dateMedium: {{date | date:'medium':'+2':'ar-EG'}}
+<br> dateLong: {{date | date:'long':'+2':'ar-EG'}}
+<br> dateFull: {{date | date:'full':'+2':'ar-EG'}}
 <br>
 <!--
     لو عايزة اجيب ال
@@ -80,12 +66,9 @@ chain pipe{{date | date:'yyy-M-EE-a-h-H-m-s' | uppercase}}
     observable
 -->
 Without promise Async: {{promiseData}}
-<br>
-With promise Async Pipe: {{ promiseAsync| async}}
-<br>
-Without observable Async{{observableData}}
-<br>
-With observable Async: {{observableAsync | async}}
+<br> With promise Async Pipe: {{ promiseAsync| async}}
+<br> Without observable Async{{observableData}}
+<br> With observable Async: {{observableAsync | async}}
 <br>
 <!--
 وممكن اعمل
@@ -98,7 +81,7 @@ With observable Async&json: {{observableAsync | async | json}}
 
 <!-- Custom Pipes -->
 <img [src]="userImage | defaultImage:placeholder:false">
- <!--
+<!--
      Pure And Impure Pipes
      الpipe
      بيشتغل لما يكون عندى
@@ -114,31 +97,20 @@ With observable Async&json: {{observableAsync | async | json}}
      بيرن مع كل
      change detection
      فهيشوف التغيرات اللى هتحصل
+What are Impure Pipes?
+
+For every change detection cycle in Angular, an impure pipe is called regardless of the change in the input fields. Multiple pipe instances are created for these pipes. Inputs passed to these pipes can be mutable.
+
+By default, all pipes are pure. However,
+ you can specify impure pipes using the pure property, as shown below
+ @Pipe({
+
+  name: 'demopipe',
+
+  pure : true/false
+
+})
 -->
-<br>
-total age : {{data | sum: 'age'}}
-<br>
-total speed : {{data | sum: 'speed'}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br> total age : {{data | sum: 'age'}}
+<br> total speed : {{data | sum: 'speed'}}

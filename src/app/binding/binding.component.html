@@ -1,18 +1,38 @@
 <p>binding</p>
 <!--
-binding
-used to define the communication between a component and the DOM
+Data binding (Data flow)
+used to define the communication between a component (view) and the DOM (source)
 او
 to link your data to your view layer.
 او
 communication between your typescript code of your component and
 your template which user sees.
+
+1- one way data binding
+
+1.1  from source to view
+-Data Interpolation
+-property binding
+-[bind.target]  ==> وامتى تشتغل بناء على شرط  مثالbind  ودى بتحدد نوع ال
+[class.special]="isSpecial"
+_____
+1.2  from view to source
+- Event binding
+عشان اطلب منة فنكشنsource ل view بتبعت طلب من ال
+parent لل child وبتساعد فى  عملية  نقل الداتا او الايفنت من
+______________________________
+2- two way data binding
+view لل source ل view من ال
+property وال  Event لحاجتين ال target دا بيعمل
+فيعتبر جزئين هما
+- from source to view
+- from view to source
 -->
 <hr>
 <!--
 Data Interpolation
 one-way data binding technique which is used to output the data from a
-TypeScript code to HTML template (view)
+TypeScript code (source) to HTML template (view)
 Interpolation is a special syntax that Angular converts into a property binding
 ___________________
 Interpolation and property binding can set only properties, not attributes
@@ -29,8 +49,8 @@ Interpolation and property binding can set only properties, not attributes
 <input type="text" disabled="{{true}}"><br>
 <input type="text" disabled="{{false}}"><br>
 <p> {{ allow }} </p>
-
 <hr>
+
 <!--
 property binding
 One-Way from model to view
@@ -122,8 +142,8 @@ onClick() ==> Template statement
 
 <button (click)="onClick()">Event binding</button>
 <!--
-    $event super important is kind of a reserved variable name
-    will simply be the data emitted with that event
+  $event super important is kind of a reserved variable name
+  will simply be the data emitted with that event
 -->
 <button (click)="greeting($event)">Event binding</button>
 <button (click)="greet = 'welcome'">Event binding</button>{{greet}}
@@ -152,6 +172,7 @@ onClick() ==> Template statement
     <h2>{{fname}}</h2>
 </div>
 <hr>
+
 <!-- two way data binding -->
 <input type="text" (input)="onUpdateServerName($event)"> {{serverName}}
 
@@ -178,5 +199,5 @@ npm install --save @angular/elements
 
 <div [innerHTML]="content"></div>
 <!--
-    <comp-with-host-binding dirWithHostBinding></comp-with-host-binding>
- -->
+
+<comp-with-host-binding dirWithHostBinding></comp-with-host-binding>-->
