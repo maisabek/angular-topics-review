@@ -21,6 +21,13 @@ ____________________________
 <form #buildForm="ngForm" (ngSubmit)="onSubmit(buildForm.value)">
     fname:<input type="text" name="fname" ngModel required><br> lname:
     <input type="text" name="lname-" ngModel #count="ngModel">
-    <br> {{count.value}} {{buildForm.value | json}}
+    <br> {{count.value}}
+
+    <div ngModelGroup="group" #group="ngModelGroup">
+        <input type="text" name="dob" ngModel>
+        <input type="text" name="st" ngModel>
+    </div>
+
+    {{buildForm.value | json}}
     <button type="submit">submit</button>
 </form>

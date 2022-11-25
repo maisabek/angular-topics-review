@@ -21,7 +21,6 @@
   Reactive forms are more scalable, reusable, and testable.
 -->
 
-
 <!-- template driven form -->
 <h5>template-driven-form</h5>
 <app-template-driven-form></app-template-driven-form>
@@ -47,9 +46,7 @@
     <button type="button" (click)="updateValue()">update value</button>
 </form>
 
-
 <hr>
-
 
 <h5>formBuilder</h5>
 <form [formGroup]="buildForm" (ngSubmit)="submit()">
@@ -112,4 +109,5 @@
 </form>
 {{myform.errors}}
 <hr>
+
 <app-dynamic-form></app-dynamic-form>
