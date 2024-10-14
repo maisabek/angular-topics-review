@@ -1,25 +1,24 @@
 <p>send works!</p>
-<!-- 
+<!--
 لما يخلص كتابة فى التكست فيلد هيخزن الناتج فى المتغير داتا
-
-     eventFromChild ===> عشان استقبل الاوت بوت
+eventFromChild ===> عشان استقبل الاوت بوت
  -->
 <input type="text" #nameRef (keyup)='data = $event.target.value'>
 <!-- myChild.refresh() -->
 <!-- <button (click)="addName(nameRef.value)">refresh</button> -->
 <hr>
 
-<app-receive [receiveData]='data'  message="Use Angular!"
-#myChild (output)="dataFromChild = $event">
-<!-- 
-    الداتا دى مش هتنعرض الا لو كتبت  
+<app-receive [receiveData]='data' message="Use Angular!"
+             #myChild (output)="dataFromChild = $event">
+  <!--
+    الداتا دى مش هتنعرض الا لو كتبت
     <ng-content></ng-content>
     جو الكمبونت
 -->
-    <!-- <p class="demo1">test</p> -->
-    <h5>my title</h5>
-    <p #itemref *ngFor="let item of [1,2,3,4,5]">item # {{item}}</p>
-    <app-ngx *ngFor="let item of [1,2,3,4,5]"></app-ngx>
+  <!-- <p class="demo1">test</p> -->
+  <h5>my title</h5>
+  <p #itemref *ngFor="let item of [1,2,3,4,5]">item # {{item}}</p>
+  <app-ngx *ngFor="let item of [1,2,3,4,5]"></app-ngx>
 </app-receive>
 
 <hr>
@@ -33,22 +32,22 @@ data from receive component: {{dataFromChild}}
 data from receive component : {{title}}
 <hr>
 <app-receive [(title)]="title">
-    <app-ngx></app-ngx>
+  <app-ngx></app-ngx>
 </app-receive>
 
 <button (click)="announce()">Announce mission</button>
 
 <h3>History</h3>
-    <ul>
-      <li *ngFor="let event of history">{{event}}</li>
-    </ul>
+<ul>
+  <li *ngFor="let event of history">{{event}}</li>
+</ul>
 
-<!-- 
-    binding to custom properties 
+<!--
+    binding to custom properties
     all properties of components are only accessible inside these component
     not from outside so if you want to allow parent components to be able to
     bind to this property need to add decortor @Input
-
 -->
 
-<app-receive *ngFor="let elem of serverElements" [element]="elem"></app-receive>
+<app-receive *ngFor="let elem of serverElements" [element]="elem">
+</app-receive>

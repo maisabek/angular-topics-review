@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ngrx.component.scss']
 })
 export class NgrxComponent implements OnInit {
-  
+
   // count:any=0
   // constructor(private store:Store<any>) {
     //select(nSelector) عشان ينادى على السيلكتور
@@ -36,6 +36,4 @@ export class NgrxComponent implements OnInit {
   load(){
     // this.store.dispatch(new LoadTodosAction())
   }
-
-
 }

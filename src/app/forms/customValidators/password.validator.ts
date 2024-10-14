@@ -1,5 +1,5 @@
 
-import {ValidatorFn, FormGroup} from '@angular/forms';
+import {ValidatorFn, FormGroup, AbstractControl} from '@angular/forms';
 
 export function validatePassword(formGroup: FormGroup) {
     // لو عايزة اعمل على عنصر واحد
@@ -23,3 +23,19 @@ export function validatePass(control1: string, control2: string): ValidatorFn {
     return null;
  };
  }
+
+
+
+export function validatePass1(control1: string, control2: string): ValidatorFn {
+  return (formGroup: AbstractControl): {[key: string]: any} | null => {
+    console.log('in password validator', formGroup);
+    const password = formGroup.get(control1);
+    const confirmPassword = formGroup.get(control2);
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
+      confirmPassword.setErrors({ wrongPassword: true });
+      return { wrongPassword: true };
+    }
+    return null;
+  };
+}
+

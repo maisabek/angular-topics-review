@@ -41,47 +41,52 @@ ngClass Directive: The ngClass directive is used to add or remove CSS classes to
 ngStyle Directive: The ngStyle directive facilitates you to modify the style of an HTML element using the expression.
  You can also use ngStyle directive to dynamically change the style of your HTML element.
 */
-import {Directive, ElementRef, Renderer, HostListener, Input, HostBinding} from '@angular/core';
+import { Directive, ElementRef, Renderer, HostListener, Input, HostBinding } from '@angular/core';
 @Directive({
-    /*
-    technically the selector of a directive can be configured just like the selector
-    of a component so you could alse use css class or the elements style but again
-    typically use the attribute style
-    _________
-    [] لية حاطط الاقواس دى
-    css match rules بيستخدم selector لان
-    */
-    selector: '[appDirective]'
+  /*
+  technically the selector of a directive can be configured just like the selector
+  of a component so you could alse use css class or the elements style but again
+  typically use the attribute style
+  _________
+  [] لية حاطط الاقواس دى
+  css match rules بيستخدم selector لان
+  */
+  selector: '[appDirective]'
 })
-export class directive{
-// Attribute Directive
-constructor(private elementRef: ElementRef, private render: Renderer) {
-elementRef.nativeElement.style.backgroundColor = 'green';
-//دى فرقت عن اللى فوق ان لو حبيت ارن على حاجة غير البروزر يعنى بلات فورم تانية زى الاندرويد رندر دى هتصرف وتنادى على الفنكشن المناسبة
-render.setElementStyle(elementRef.nativeElement, 'backgroundColor', 'yellow');
-}
-// فى حالة ان عايزة الهوست او الكمبونت هى اللى تبعت اللون
-@Input() highLightColor: string
-// دى معناها ان الانبت هو نفس الديكرتف
-@Input('appDirective') LightColor: string
-@Input() defaultColor: string;
+export class directive {
+  // Attribute Directive
+  constructor(private elementRef: ElementRef, private render: Renderer) {
+    elementRef.nativeElement.style.backgroundColor = 'green';
+    //دى فرقت عن اللى فوق ان لو حبيت ارن على حاجة غير البروزر يعنى بلات فورم تانية زى الاندرويد رندر دى هتصرف وتنادى على الفنكشن المناسبة
+    render.setElementStyle(elementRef.nativeElement, 'backgroundColor', 'yellow');
+    // this._Renderer2.setStyle(this.ElementRef.nativeElement,'backgroundColor','green')
 
-// بقدر اتحكم فى ال
-// property  بتاعة parent
-@HostBinding('class.active') isHovering: boolean // عايزة اشوف الكلاس دة عامل هوفر ولا لا
-@HostListener('mouseover') onMouseOver() {
+  }
+  // فى حالة ان عايزة الهوست او الكمبونت هى اللى تبعت اللون
+  @Input() highLightColor: string
+  // دى معناها ان الانبت هو نفس الديكرتف
+  @Input('appDirective') LightColor: string
+  @Input() defaultColor: string;
+
+  // بقدر اتحكم فى ال
+  // property  بتاعة parent
+  @HostBinding('class.active') isHovering: boolean // عايزة اشوف الكلاس دة عامل هوفر ولا لا
+
+  @HostListener('mouseover') onMouseOver() {
     console.log('mouse over');
     this.highLight(this.defaultColor);
     this.isHovering = true;
-}
-@HostListener('mouseleave') onMouseLeave() {
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
     console.log('mouse leave');
     //  this.highLightColor || 'red'  ===> يعنى لو الهايت لايت كالر مجاش ينفذ الاحمر
     this.highLight(this.highLightColor || 'red');
     this.isHovering = false;
-}
-highLight(color: string) {
-this.render.setElementStyle(this.elementRef.nativeElement, 'backgroundColor', color);
-}
+  }
 
+  highLight(color: string) {
+
+    this.render.setElementStyle(this.elementRef.nativeElement, 'backgroundColor', color);
+  }
 }

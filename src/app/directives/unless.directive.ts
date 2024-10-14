@@ -10,6 +10,7 @@ export class UnlessDirective {
   hasView = false;
   constructor(private templateRef: TemplateRef<any>,
               private viewContainer: ViewContainerRef){}
+              
   // هيستقبل الانبت اللى جايلة هنا
   @Input() set appUnless(condition: boolean) {
     if (!condition && !this.hasView) { // جاى فالس هيظهر

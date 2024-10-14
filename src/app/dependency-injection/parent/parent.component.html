@@ -1,20 +1,20 @@
 <div class="parent">
-<p>parent</p>
-<input type="text" [(ngModel)]="ServiceService.value">
-<input type="text" (keyup)="ServiceService.value.next($event,target.value)">
-<!-- 
-    <app-child></app-child> 
+  <p>parent</p>
+  <input type="text" [(ngModel)]="ServiceService.value">
+  <input type="text" (keyup)="ServiceService.value.next($event,target.value)">
+  <!--
+    <app-child></app-child>
     لما اشيل دى وابعتها جوة السيلكتور بتاع ال
     parent
     واحط بدلها
     <ng-content></ng-content>
      فهنا مش هيتاثر بالبيرنت
 -->
-<ng-content></ng-content>
+  <ng-content></ng-content>
 </div>
 
 login : {{this.ServiceService.login()}}
 <h3>History</h3>
-    <ul>
-      <li *ngFor="let event of history">{{event}}</li>
-    </ul>
+<ul>
+  <li *ngFor="let event of history">{{event}}</li>
+</ul>

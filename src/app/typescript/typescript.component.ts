@@ -58,6 +58,9 @@ ___________________
 TypeScript takes time to compile the code.
 بتاخد وقت اطول فى الرن لان البروزر مش بيفهم تايب اسكربت فبيحولها لجافا اسكربت
 compile the code by cli
+
+
+
 */
 import { Component, OnInit } from '@angular/core';
 @Component({

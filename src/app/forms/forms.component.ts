@@ -66,6 +66,8 @@ export class FormsComponent implements OnInit {
 
   ngOnInit() {
     console.log(`form ${this.control}`);
+    this.formBuilder()
+
     // valueChanges من نوع اوبزرفبول وبتراقب التغير اللى هيحصل
     this.control.valueChanges.subscribe(data => {
       console.log('data', data);
@@ -120,9 +122,26 @@ export class FormsComponent implements OnInit {
       pass: new FormGroup({
       password: this.password,
       confirmPassword: this.confirmPassword
-      },validatePass('password', 'confirmPassword'))
+      },{validators:validatePass('password', 'confirmPassword')})
     })
   }
-
+  LoginForm!:FormGroup
+  formBuilder(){
+   this.LoginForm=this.fb.group({
+      name:['',[Validators.required]],
+      email: ['', [Validators.required,Validators.email, Validators.pattern('.*com$')]],
+    })
+  }
+  isInvalid: boolean = false;
+  Login(){
+    if(this.LoginForm.invalid){
+      this.isInvalid=true
+      console.log("invalid");
+      console.log("LoginForm.controls['email'].errors = ",
+      this.LoginForm.get('email'));
+    }else{
+      console.log("LoginForm = ",this.LoginForm);
+    }
+  }
 }
 

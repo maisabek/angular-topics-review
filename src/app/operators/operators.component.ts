@@ -42,6 +42,7 @@ const obs7$=interval(1000).pipe(
   map(value => {
     if(value > 3) {
       throw new Error("over 3")  // عشان اخلية يطلع ايرور لما يعدى ال 3
+      // this.obs7$.unsubscribe()
     }
     return value
   }),

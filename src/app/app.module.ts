@@ -131,10 +131,10 @@ const x = 5;
     HttpClientJsonpModule,
     // StoreModule.forRoot(reducers),     //Reducer عشان اعرف الابلكشن ان دة
     // EffectsModule.forRoot([TodosEffect]),
-     //instrument() ==> devTools عشان اظبط اعددات ال
+    //instrument() ==> devTools عشان اظبط اعددات ال
     // StoreDevtoolsModule.instrument({
-  //اقصى عدد من الاكشن اللى تتحط فى الهستورى ممكن اديها رقم ولو عدد الاكشن ذاد هيمسح من القديماو فالس والفالس هنا معنها اى عدد
-      // maxAge: false
+    //اقصى عدد من الاكشن اللى تتحط فى الهستورى ممكن اديها رقم ولو عدد الاكشن ذاد هيمسح من القديماو فالس والفالس هنا معنها اى عدد
+    // maxAge: false
     // }),
     TranslateModule.forRoot({
       defaultLanguage: 'en',

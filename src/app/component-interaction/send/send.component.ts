@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import {ReceiveComponent} from '../receive/receive.component';
-import { BehaviorSubject } from 'rxjs';
-import {ServiceService} from '../../modules/services/service.service'
+import { ReceiveComponent } from '../receive/receive.component';
+import { ServiceService } from '../../modules/services/service.service'
 @Component({
   /*
   selector :
@@ -11,10 +10,10 @@ import {ServiceService} from '../../modules/services/service.service'
   selector: 'app-send',
   templateUrl: './send.component.html',
   styleUrls: ['./send.component.scss'],
-    /*
-    metadata array
-   بتوعها children متشافة هنا بس وعلى مستوى ال
-  */
+  /*
+  metadata array
+ بتوعها children متشافة هنا بس وعلى مستوى ال
+*/
   providers: [ServiceService],
   encapsulation: ViewEncapsulation.Emulated
   /*
@@ -34,7 +33,7 @@ import {ServiceService} from '../../modules/services/service.service'
   _________
  ViewEncapsulation.Native
  styles from the main HTML do not propagate to the component.
- 
+
  ShadowDom استبدلت ب Native يعنى ال ShadowDom نفس ال
  This is called "ShadowDom" instead of "Native" now
  the functionality is the same though
@@ -45,28 +44,28 @@ import {ServiceService} from '../../modules/services/service.service'
 })
 export class SendComponent implements OnInit {
   data = 'jj';
-constructor(private _ChangeDetectorRef: ChangeDetectorRef,private ServiceService:ServiceService) {}
+  constructor(private _ChangeDetectorRef: ChangeDetectorRef, private ServiceService: ServiceService) { }
   dataFromChild: string
 
   // two data binding مثال على ال
-    title = '';
-    @ViewChild(ReceiveComponent, {static: true}) mychild: ReceiveComponent
+  title = '';
+  @ViewChild(ReceiveComponent, { static: true }) mychild: ReceiveComponent
   ngOnInit() {
-        console.log(this.mychild.setTitle(' send component'))
-    }
-    history: string[] = [];
-    missions = ['Fly to the moon!',
-                'Fly to mars!',
-                'Fly to Vegas!'];
-    nextMission = 0;
+    console.log(this.mychild.setTitle(' send component'))
+  }
+  history: string[] = [];
+  missions = ['Fly to the moon!',
+    'Fly to mars!',
+    'Fly to Vegas!'];
+  nextMission = 0;
 
-    announce() {
-      const mission = this.missions[this.nextMission++];
-      this.ServiceService.announceMission(mission);
-      this.history.push(`Mission "${mission}" announced`);
-      if (this.nextMission >= this.missions.length) { this.nextMission = 0; }
-    }
+  announce() {
+    const mission = this.missions[this.nextMission++];
+    this.ServiceService.announceMission(mission);
+    this.history.push(`Mission "${mission}" announced`);
+    if (this.nextMission >= this.missions.length) { this.nextMission = 0; }
+  }
 
-    // <!-- binding to custom properties -->
-    serverElements=[{type:'server',name:'Testserver',content:'just a test!'}]
+  // <!-- binding to custom properties -->
+  serverElements = [{ type: 'server', name: 'Testserver', content: 'just a test!' }]
 }

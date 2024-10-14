@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter,
-   ContentChildren, QueryList, ContentChild, ElementRef,AfterContentInit, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
-import { SendComponent } from '../send/send.component';
+   ContentChildren, QueryList, ContentChild, ElementRef,AfterContentInit,
+   ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
+// import { SendComponent } from '../send/send.component';
 import { NgxComponent } from 'src/app/ngx/ngx.component';
 
 @Component({
@@ -9,6 +10,11 @@ import { NgxComponent } from 'src/app/ngx/ngx.component';
   styleUrls: ['./receive.component.scss']
 })
 export class ReceiveComponent implements OnInit,OnChanges,AfterContentInit {
+  /*
+    the exclamation mark [!]
+    indicates that the id property will be initialized before it's accessed
+  */
+  @Input() id!: number
   @Input() message
   @Input() set receiveData(name: string) {
    this.myTitle = name
@@ -25,7 +31,7 @@ export class ReceiveComponent implements OnInit,OnChanges,AfterContentInit {
   _________________________
    receiveData ==> دا اللى هيجى , name ==> دا اللى هستخدمة عندى
    */
-  
+
   myTitle: string;
     // EventEmitter ===> يعنى نبعت ايفنت من الاتشيلد للبيرنت
   @Output() output: EventEmitter<string> = new EventEmitter<string>();
@@ -67,7 +73,7 @@ export class ReceiveComponent implements OnInit,OnChanges,AfterContentInit {
         log.push(`${propName} changed from ${from} to ${to}`);
       }
     }
-    
+
     this.changeLog.push(log.join(', '));
     console.log("changeLog",this.changeLog)
   }
@@ -77,9 +83,12 @@ export class ReceiveComponent implements OnInit,OnChanges,AfterContentInit {
   }
   ngAfterContentInit() {
     console.log('subChild in ngAfterContentInit', this.subChild);
+    this.contentChildern.forEach(element => {
+      console.log("itemref = ",element.nativeElement.innerText);
+    });
   }
 
-  //  binding to custom properties 
+  //  binding to custom properties
  @Input() element:{type:string,name:string,content:string}
 
 }

@@ -11,9 +11,9 @@ your template which user sees.
 1- one way data binding
 
 1.1  from source to view
--Data Interpolation
--property binding
--[bind.target]  ==> وامتى تشتغل بناء على شرط  مثالbind  ودى بتحدد نوع ال
+-Data Interpolation ==> {{}}
+-property binding ==> []
+-[bind.target]  ==> وامتى تشتغل بناء على شرط  مثال bind  ودى بتحدد نوع ال
 [class.special]="isSpecial"
 _____
 1.2  from view to source
@@ -70,6 +70,8 @@ later learn of a directive or components
 <input type="text" [disabled]="false">
 <input type="text" [disabled]="true">
 <p [innerText]="allow"></p>
+<div [innerHTML]="content"></div>
+
 <hr>
 
 <!--
@@ -79,6 +81,7 @@ ______________________
     binding class
     allow us to add or remove css class
 -->
+
 <h5>binding class</h5>
 <h5 [class]="successVarable">[class]="successVariable"</h5>
 <h5 [class]="messageclass">success:flag,successStyle:!flag</h5>
@@ -87,6 +90,15 @@ ______________________
 <h5 [ngClass]="messageclass">ng class</h5>
 <h5 [ngClass]="{success:flag,successStyle:!flag}">ng class</h5>
 <h5 [ngClass]="{'success':num == 4}">ng class 2</h5>
+
+<!--
+  ngClass ==>
+  [class] اقوى من
+  [class] بتنفذ فى حالة وجود
+  class على اللى موجود فى ال [ngClass] اللى موجود فى ال class بيضيف ال
+ -->
+<p class="blue"  [class]="'red'" [ngClass]="'green'">class binding</p>
+
 <hr>
 
 <!--
@@ -104,7 +116,6 @@ classes or styles simultaneously
 <tr>
     <td [attr.colspan]="1 + 1">One-Two</td>
 </tr>
-
 <hr>
 <!--
     style binding
@@ -147,7 +158,8 @@ onClick() ==> Template statement
 -->
 <button (click)="greeting($event)">Event binding</button>
 <button (click)="greet = 'welcome'">Event binding</button>{{greet}}
-<button (myClick)="clickMessage=$event" clickable>click with myClick</button> {{clickMessage}}
+<button (myClick)="clickMessage=$event" clickable>click with myClick</button>
+{{clickMessage}}
 <!--
      #myinput
      ريفرنس بيشاور على الانبت دة وممكن بدل الهاش اكتب
@@ -186,6 +198,9 @@ ngNonBindable
 <!-- لو عايزة انادى على الكمبونت -->
 <ng-container *ngComponentOutlet="dummy"></ng-container>
 
+<!-- Template لو عايزة انادى على  -->
+<ng-container *ngTemplateOutlet="thenBlock"></ng-container>
+<ng-template #thenBlock>thenBlock</ng-template>
 
 <!--
 Angular Elements
@@ -196,8 +211,6 @@ That's a pretty awesome feature and you actually only need to write two lines of
 npm install --save @angular/elements
 -->
 
-
-<div [innerHTML]="content"></div>
 <!--
-
-<comp-with-host-binding dirWithHostBinding></comp-with-host-binding>-->
+<comp-with-host-binding dirWithHostBinding></comp-with-host-binding>
+-->

@@ -1,8 +1,5 @@
-import { R3TargetBinder } from '@angular/compiler';
 import { Component, Injector, OnInit } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ReceiveComponent } from '../component-interaction/receive/receive.component';
 import { InputComponent } from '../input/input.component';
 
 @Component({
@@ -33,10 +30,10 @@ export class BindingComponent implements OnInit{
   constructor(inject:Injector,domSanitizer:DomSanitizer) {
     // const ReceiveElement=createCustomElement(ReceiveComponent,{injector:inject})
     // customElements.define('my-receive',ReceiveElement)
-    // setTimeout(() => {
-    //   //<p>paragraph</p>
-    //   this.content=domSanitizer.bypassSecurityTrustHtml("<my-receive  message='Use Angular!'></receive>")
-    // }, 3000);
+    setTimeout(() => {
+      //<p>paragraph</p>
+      this.content=domSanitizer.bypassSecurityTrustHtml("<my-receive  message='Use Angular!'></receive>")
+    }, 3000);
 
   }
   dummy=InputComponent
