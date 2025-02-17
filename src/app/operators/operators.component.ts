@@ -3,7 +3,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { interval, fromEvent, of, from,Notification, asyncScheduler, Observable, concat, EMPTY, forkJoin, bindCallback, BehaviorSubject, combineLatest, defer, iif, throwError, merge, Subject, GroupedObservable,partition, range, Timestamp, ConnectableObservable } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map, retry, retryWhen, scan, pluck, auditTime, tap, share, take, count,first, takeLast, last, takeWhile, mergeMap, catchError, delay, switchMapTo, mapTo, bufferToggle, buffer, bufferWhen, bufferTime, bufferCount, exhaustMap, exhaust, expand,
-   groupBy, reduce, mergeScan, pairwise, startWith, mergeAll, windowWhen, takeUntil, skipWhile, skip, skipLast, skipUntil, debounce, audit, throttle, distinctUntilKeyChanged, distinct, distinctUntilChanged, ignoreElements, elementAt, sampleTime, sample, single, delayWhen, dematerialize, materialize, timestamp, timeInterval, timeout, timeoutWith, findIndex, toArray, defaultIfEmpty, isEmpty, every, withLatestFrom, publishBehavior, refCount, publish, publishLast, publishReplay } from 'rxjs/operators';
+   groupBy, reduce, mergeScan, pairwise, startWith, mergeAll, windowWhen, takeUntil, skipWhile, skip, skipLast, skipUntil, debounce, audit, throttle, distinctUntilKeyChanged, distinct, distinctUntilChanged, ignoreElements, elementAt, sampleTime, sample, single, delayWhen, dematerialize, materialize, timestamp, timeInterval, timeout, timeoutWith, findIndex, toArray, defaultIfEmpty, isEmpty, every, withLatestFrom, publishBehavior, refCount, publish, publishLast, publishReplay,
+   repeatWhen} from 'rxjs/operators';
 
 interface Course{
   id:number
@@ -31,6 +32,8 @@ export class OperatorsComponent implements OnInit {
   nameSubject = new BehaviorSubject<string>(null);
   fetchDataButton = new Subject();
   nameSubject1 = new Subject<Person>();
+  userData$: Observable<any>;
+
 ngOnInit() {
 /*
 retry ==> انى اعمل كونكت او ريكونكت عدد مرات معين يعنى اما يخلص يبدء تانى من الاول
@@ -183,10 +186,10 @@ fromEvent(input,'keyup').pipe(
    للداتا يعنى بتاخد داتا وبتعمل عليها اى شغل انا عاوزة وبترجع الداتا الجديدة transform بتعمل
   next step وتبعتها لل
   ______________________
-   tap
+  tap
   عشان تعرف استقبلت اية debug بستخدمها فى ال
- sideEffect بتاخد منى حاجة وبتعامل معها ك
- complete وفنكشن success فبتستقبل فنكشن ايرور وفنكشن
+  sideEffect بتاخد منى حاجة وبتعامل معها ك
+  complete وفنكشن success فبتستقبل فنكشن ايرور وفنكشن
  */
   fromEvent(document,'click').pipe(
     tap((event:MouseEvent)=>{
@@ -210,14 +213,44 @@ fromEvent(input,'keyup').pipe(
     )
   ).subscribe(console.log)
   /*
-  share ==> واحدة بس instance عشان يتاكد ان طالع منة Observable راكب على  Observable دا
-  */
-  const request = this.getPosts();
-  //Share operator is an important rxjs operator to make multicasting on an observable
+  Share operator is an important rxjs operator to make multicasting on an observable
+  هيبدء متأخر شوية subscribe وفى  subscribe وهعمل علية اكتر من observable لو عندى
+   الاول عندة يعنى التانى مش هيبدء من الاول يعنى subscribe التانى هيبدء من عند subscribe ال
+   ال result بتكون share
 
-  // share هنا عمل اتنان صب اسكرايب يعنى بعت اتنان ريكوست فالحل  فى
-  this.doSomething(request)
-  request.subscribe()
+  share ==> واحدة بس instance عشان يتاكد ان طالع منة Observable راكب على  Observable دا
+  share() ==> يقوم بتحويل الـ
+   ساخن Observable البارد إلى Observable
+   بحيث يتم مشاركة النتائج بين جميع المشتركين.
+
+  Observable تقليل التكرار: يقلل من إعادة تشغيل الـ
+  subscribe الأساسي عند وجود عدة .
+  */
+
+  //example 1
+  const source1$ = interval(1000).pipe(take(5)); // إنشاء Observable بارد ومشاركته
+    // المشترك الأول
+  source1$.subscribe(val => console.log(`Observer 1: ${val}`));
+    // بعد 2 ثانية، المشترك الثاني يبدأ
+  setTimeout(() => {
+   source1$.subscribe(val => console.log(`Observer 2: ${val}`));
+  }, 2000);
+
+  // example 2 [httpClient with share]
+  /*
+   subscripe عندما يشترك ال
+  الثاني (أو أي مكون آخر)،
+  سيتم مشاركة نفس النتيجة دون الحاجة إلى إرسال الطلب مرة أخرى، وبالتالي تحسين الأداء ومنع إرسال طلبات متكررة غير ضرورية.
+  */
+  this.getUserData().subscribe(data => {
+    console.log('First subscription received data',data);
+  });
+
+  // الاشتراك الثاني: سيستفيد من النتيجة المشتركة
+  this.getUserData().subscribe(data => {
+    console.log('Second subscription received data',data);
+  });
+
   /*
   take
   بعرض جزء معين من الداتا
@@ -237,9 +270,16 @@ fromEvent(input,'keyup').pipe(
 
 /*
 mergeMap & flatMap
+هما متشابهان جدًا
+( mergeMap هو مجرد اسم بديل لـ flatMap)
+
 nesting loop يعنى على طريقة اللوب كأنى بعمل mapping ببعض بس على طريقة ال Observables بيدمجوا اتنان
 اللى عايزة equation الاولانى وبعد كدة اعمل ال observable لوب على ال
 واحد observable فى الاخر ك merge لكل دة وبعد كدة يتعملة  flat التانى وبعد كدة تعمل observable لل
+
+ API للحصول على بيانات من
+ وبناءً على النتيجة، سنقوم بتنفيذ طلب آخر لجلب بيانات إضافية مرتبطة بالطلب الأول.
+
 */
 
 // nesting loop بيشتغل ك
@@ -252,6 +292,7 @@ nesting loop يعنى على طريقة اللوب كأنى بعمل mapping ب�
       })
     );
     combined.subscribe(console.log); // x1 x2 x3 y1 y2 y3 z1 z2 z3
+
 
   /*
   concat
@@ -1064,6 +1105,17 @@ warm Observables
     },5000) // هيستقبل اخر داتا موجودة عندى لان بعد خمس ثوانى هيكون خلص publishLast() دا عشان
   } // end ngOnInit
 
+
+  getUserData(): Observable<any> {
+    // Observable إذا كانت البيانات موجودة بالفعل، نعيد نفس
+    if (!this.userData$) {
+      this.userData$ =
+      this.http.get('https://jsonplaceholder.typicode.com/todos/1').pipe(
+        share()  // مشاركة النتيجة بين المشتركين
+      );
+    }
+    return this.userData$;
+  }
   filterData(userData$: Observable<any>) {
     const [filtered$, nonFiltered$] = partition(userData$,(user: any) => {
       return user.id % 2 === 0
@@ -1107,9 +1159,51 @@ warm Observables
     return this.http.get('https://jsonplaceholder.typicode.com/todos').pipe(share());
   }
 
+  // repeatWhen ==> بتاخد observable
+  value!: number
+   retryCount = 0;
+  countInterval=interval(1000)
+  .pipe(
+    map((ele)=>{
+      this.value = ele * 2
+      return this.value
+    }),
+    takeWhile((ele)=>ele < 6),
+    repeatWhen(item => item.pipe(
+      tap(()=>this.retryCount++),
+      takeWhile(()=>this.retryCount < 3)
+    ))
+  )
+  .subscribe((res)=>{
 
+  },err=>{
+    console.error(err);
 
+  },()=>{
+    console.log("complete");
 
+  })
+  private usersUrl = 'https://jsonplaceholder.typicode.com/users';
+  private userDetailUrl = 'https://jsonplaceholder.typicode.com/users/';  // نضيف ID المستخدم لاحقًا
+
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.usersUrl);
+  }
+
+  // جلب تفاصيل المستخدم بناءً على ID
+  getUserDetails(id: number): Observable<any> {
+    return this.http.get<any>(`${this.userDetailUrl}${id}`);
+  }
+
+    // تنفيذ جلب قائمة المستخدمين ثم جلب تفاصيل أول مستخدم في القائمة
+  getUsersWithDetails(): Observable<any> {
+    return this.getUsers().pipe(
+      mergeMap(users => {
+        // جلب تفاصيل أول مستخدم
+        return this.getUserDetails(users[0].id);
+      })
+    );
+  }
 }
 
 
